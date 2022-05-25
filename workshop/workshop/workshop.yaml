@@ -6,5 +6,5 @@ modules:
     - exercises/knative
     - exercises/serverless-example
     - exercises/graalvm-intro
-    - spring-native-intro.md
+    - exercises/spring-native-intro
     - workshop-summary
