@@ -35,7 +35,7 @@ clear: true
 Hint: The activator component stalls the HTTP request until a user Pod is available to handle it.
 
 ```terminal:execute
-command: k logs -l app=spring-boot-hello-world-00001 -c user-container
+command: k logs -l app=spring-boot-hello-world-00001 -c user-container | grep "Started HelloWorldApplication"
 clear: true
 ```
 
@@ -43,13 +43,11 @@ clear: true
 command: hey -z 60s -c 1000 -m GET https://spring-boot-hello-world-{{session_namespace}}.{{ ENV_TAP_CNRS_SUBDOMAIN }}
 clear: true
 ```
-
-```terminal:execute
-command: kn service update spring-boot-hello-world --scale-min 1
-clear: true
+```execute-2
+watch kubectl get pods
 ```
 
 ```terminal:execute
-command: k top pods -l app=spring-boot-hello-world-00002 --containers
+command: k top pods -l app=spring-boot-hello-world-00001 --containers
 clear: true
 ```

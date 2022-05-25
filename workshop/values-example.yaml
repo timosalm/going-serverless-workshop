@@ -2,7 +2,7 @@
 ---
 tap:
   ingress_domain: tap.example.com
-  cnrs_subdomain: cnrs.tap.example.com
+  cnrs_subdomain: cnr.tap.example.com
 container_registry:
   hostname: harbor.example.com
   username: admin

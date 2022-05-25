@@ -5,4 +5,6 @@ modules:
     - exercises/serverless-intro
     - exercises/knative
     - exercises/serverless-example
+    - exercises/graalvm-intro
+    - spring-native-intro.md
     - workshop-summary
