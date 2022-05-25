@@ -2,4 +2,4 @@
 set -x
 set +e
 
-sdk use java 11.0.15-librca
+echo "IzDuyXNAmYRihn61vvM3rRVB75XQdE8A" | docker login harbor.emea.end2end.link -u "robot\$spring-io-2022+spring-io-attendees" --password-stdin

@@ -3,4 +3,6 @@ modules:
   activate:
     - workshop-overview
     - exercises/serverless-intro
+    - exercises/knative
+    - exercises/serverless-example
     - workshop-summary

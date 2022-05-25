@@ -5,6 +5,11 @@ modules:
     exercises/serverless-intro: 
         name: What Is Serverless?
         exit_sign: Conclusion
+    exercises/knative: 
+        name: What Is Serverless?
+         exit_sign: Conclusion
+    exercises/serverless-example:
+        exit_sign: Conclusion
     workshop-summary:
         name: Workshop Summary
         exit_sign: Finish Workshop  
