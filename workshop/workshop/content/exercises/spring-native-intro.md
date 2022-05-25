@@ -12,7 +12,7 @@ Let's now see how our Spring Boot sample application performs as native image on
 ```terminal:execute
 command: |
   cd spring-boot-hello-world
-  ./mvnw clean spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace } -Pnative-image -DskipTests
+  ./mvnw clean spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} -Pnative-image -DskipTests
   cd ..
 clear: true
 ```
