@@ -7,8 +7,9 @@ modules:
         exit_sign: Conclusion
     exercises/knative: 
         name: What Is Serverless?
-         exit_sign: Conclusion
+        exit_sign: Conclusion
     exercises/serverless-example:
+        name: Running a Spring Boot application on Knative
         exit_sign: Conclusion
     workshop-summary:
         name: Workshop Summary
