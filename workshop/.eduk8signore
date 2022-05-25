@@ -5,10 +5,6 @@
 ./README.md
 ./kustomization.yaml
 ./resources
-./accelerators
-./java
-./nodejs
-./techdocs
 values.yaml
 values-example.yaml
 install.sh
