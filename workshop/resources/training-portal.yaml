@@ -16,5 +16,5 @@ spec:
     reserved: 1
   workshops:
     - name: going-serverless
-      expires: 90m
-      orphaned: 90m
+      expires: 140m
+      orphaned: 140m

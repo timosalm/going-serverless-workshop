@@ -15,7 +15,7 @@ modules:
         name: Unleash the full potential of Serverless for our application
         exit_sign: Conclusion
     exercises/spring-native-intro:
-        name: Spring &#10084; GraalVM
+        name: Spring ❤ GraalVM
         exit_sign: Conclusion
     workshop-summary:
         name: Workshop Summary
