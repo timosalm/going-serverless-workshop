@@ -1,0 +1,20 @@
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
+kind: TrainingPortal
+metadata:
+  name: spring-io-2022
+spec:
+  portal:
+    title: Workshops for Spring I/O 2022
+    ingress:
+        hostname: spring-io-2022
+    registration:
+        type: anonymous
+    updates:
+      workshop: true
+    sessions:
+      maximum: 60
+    reserved: 1
+  workshops:
+    - name: going-serverless
+      expires: 90m
+      orphaned: 90m
