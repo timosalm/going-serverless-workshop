@@ -17,12 +17,14 @@ command: |
   import java.io.InputStreamReader;
   import java.io.Reader;
 
+  import static java.nio.charset.StandardCharsets.UTF_8;
+
   @RestController
   public class HelloWorldResource {
 
       @GetMapping
       public ResponseEntity<String> fetchGreeting() throws IOException {
-          InputStream inputStream = ResourceAccess.class
+          InputStream inputStream = HelloWorldResource.class
                   .getClassLoader()
                   .getResourceAsStream("src/data/hello.txt");
           Reader reader = new InputStreamReader(inputStream, UTF_8);
