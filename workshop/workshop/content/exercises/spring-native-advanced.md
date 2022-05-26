@@ -71,3 +71,12 @@ text: |
   )
   @SpringBootApplication
 ```
+
+```terminal:execute
+command: ./spring-boot-hello-world/target/hello-world 
+clear: true
+```
+
+```execute-2
+curl http://localhost:8080
+```
