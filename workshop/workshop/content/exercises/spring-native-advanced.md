@@ -17,10 +17,6 @@ command: ./going-serverless-workshop/samples/spring-native-accessing-resources/t
 clear: true
 ```
 
-```execute-2
-curl http://localhost:8080
-```
-
 ```editor:select-matching-text
 file: going-serverless-workshop/samples/spring-native-accessing-resources/src/main/java/com/example/springnativeaccessingresources/SpringNativeAccessingResourcesApplication.java
 text: "@SpringBootApplication"
@@ -49,8 +45,4 @@ clear: true
 ```terminal:execute
 command: ./going-serverless-workshop/samples/spring-native-accessing-resources/target/spring-native-accessing-resources
 clear: true
-```
-
-```execute-2
-curl http://localhost:8080
 ```

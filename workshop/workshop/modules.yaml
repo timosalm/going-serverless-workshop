@@ -4,9 +4,9 @@ modules:
         exit_sign: Serverless
     exercises/serverless-intro: 
         name: What Is Serverless?
-        exit_sign: Conclusion
+        exit_sign: Serverless runtime
     exercises/knative: 
-        name: What Is Serverless?
+        name: A serverless application runtime for Kubernetes 
         exit_sign: Conclusion
     exercises/serverless-example:
         name: Running a Spring Boot application on Knative
