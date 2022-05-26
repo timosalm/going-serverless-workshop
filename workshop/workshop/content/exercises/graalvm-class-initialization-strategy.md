@@ -68,7 +68,7 @@ text: "public static Second second = new Second();"
 ```editor:replace-text-selection
 file: ClassInit.java
 text: |2
-     public static Second second = new Second();
+  public static Second second = new Second();
 
     // part 2 of the exercise
     public static Thread t;
