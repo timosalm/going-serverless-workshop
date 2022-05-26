@@ -24,7 +24,6 @@ curl http://localhost:8080
 ```editor:select-matching-text
 file: going-serverless-workshop/samples/spring-native-accessing-resources/src/main/java/com/example/springnativeaccessingresources/SpringNativeAccessingResourcesApplication.java
 text: "public static void main(String[] args) {"
-before: 1
 ```
 
 
