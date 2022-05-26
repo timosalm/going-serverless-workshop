@@ -89,4 +89,4 @@ clear: true
 ```
 
 
-**TODO: https://github.com/ddobrin/native-spring-on-k8s-with-graalvm-workshop/blob/main/graalvm/assisted-configuration/README.md**
+**TODO: https://github.com/ddobrin/native-spring-on-k8s-with-graalvm-workshop/blob/main/graalvm/assisted-configuration/README.md  https://www.graalvm.org/22.1/reference-manual/native-image/Limitations/ **

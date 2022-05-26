@@ -23,6 +23,9 @@ modules:
     exercises/spring-native-intro:
         name: Spring ❤ GraalVM
         exit_sign: Conclusion
+    exercises/spring-native-advanced:
+        name: Spring native advanced
+        exit_sign: Conclusion
     workshop-summary:
         name: Workshop Summary
         exit_sign: Finish Workshop  

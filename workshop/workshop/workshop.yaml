@@ -9,4 +9,5 @@ modules:
     - exercises/graalvm-java-agent-assisted-config
     - exercises/graalvm-class-initialization-strategy
     - exercises/spring-native-intro
+    - exercises/spring-native-advanced
     - workshop-summary

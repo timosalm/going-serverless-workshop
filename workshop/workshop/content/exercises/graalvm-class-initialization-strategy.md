@@ -70,10 +70,10 @@ file: ClassInit.java
 text: |2
   public static Second second = new Second();
 
-    // part 2 of the exercise
-    public static Thread t;
+      // part 2 of the exercise
+      public static Thread t;
 
-    static {
+      static {
         t = new Thread(()-> {
             try {
                 System.out.println("Sleep for 10s...");
@@ -82,24 +82,30 @@ text: |2
             } catch (Exception e){}
         });
         t.start();
-    } 
+      } 
 ```
 
+ ```terminal:execute
+command: |
+  javac ClassInit.java 
+  java ClassInit
+  $GRAALVM_HOME/bin/native-image  -H:+PrintClassInitialization --initialize-at-build-time=First,Second ClassInit
+  ./classinit 
+clear: true
+```
+
+Observe that the running thread could not be written out, therefore we have incorrect behavior.
+
+Balancing initialization can be a bit tricky, this is why by default GraalVM initializes classes at runtime.
+
+So for this example to work correctly, we should have only Second to be initialized at build time.
+ ```terminal:execute
+command: |
+  $GRAALVM_HOME/bin/native-image  -H:+PrintClassInitialization --initialize-at-build-time=Second ClassInit
+  ./classinit 
+clear: true
+```
+
+
+
 ***TODO: https://github.com/ddobrin/native-spring-on-k8s-with-graalvm-workshop/blob/main/graalvm/class-initialization/README.md***
-
-
-    public static Second second = new Second();
-
-    // part 2 of the exercise
-    public static Thread t;
-
-    static {
-        t = new Thread(()-> {
-            try {
-                System.out.println("Sleep for 10s...");
-                Thread.sleep(10_000);
-                System.out.println("Done...");
-            } catch (Exception e){}
-        });
-        t.start();
-    } 
