@@ -18,7 +18,7 @@ spec:
     files: #@ "github.com/{}/going-serverless-workshop/workshop?ref={}".format(data.values.workshop_git.username,data.values.workshop_git.branch)
   session:
     resources:
-      memory: 8Gi
+      memory: 10Gi
     namespaces:
       budget: custom
     applications:
