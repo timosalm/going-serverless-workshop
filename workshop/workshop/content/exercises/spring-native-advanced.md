@@ -23,7 +23,7 @@ curl http://localhost:8080
 
 ```editor:select-matching-text
 file: going-serverless-workshop/samples/spring-native-accessing-resources/src/main/java/com/example/springnativeaccessingresources/SpringNativeAccessingResourcesApplication.java
-text: "public static void main(String[] args) {"
+text: "@SpringBootApplication"
 ```
 
 
@@ -32,17 +32,17 @@ file: going-serverless-workshop/samples/spring-native-accessing-resources/src/ma
 text: |
   @ResourceHint(
 				patterns = {
-							"src/data/test.*"
+							"src/data/hello.*"
 	  		}
 	)
-  public static void main(String[] args) {
+  @SpringBootApplication
 ```
 
 ```terminal:execute
 command: |
   cd going-serverless-workshop/samples/spring-native-accessing-resources
   ./mvnw package -DskipTests -Pnative
-  cd ..
+   cd $HOME
 clear: true
 ```
 
