@@ -33,3 +33,16 @@ command: |
   EOF
 clear: true
 ```
+
+```terminal:execute
+command: |
+  cd spring-boot-hello-world
+  ./mvnw clean package -DskipTests -Pnative
+  cd ..
+clear: true
+```
+
+```terminal:execute
+command: ./spring-boot-hello-world/target/hello-world 
+clear: true
+```
