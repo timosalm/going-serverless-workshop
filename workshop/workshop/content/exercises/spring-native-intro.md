@@ -5,26 +5,15 @@ The goal is to support compilation of existing or new Spring Boot applications t
 
 You can get started with Spring Native very easy by using start.spring.io to create a new project.
 
-
-
-
 Let's now see how our Spring Boot sample application performs as native image on a Serverless runtime!
+````
+./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} -Pnative-image -DskipTests
+```
+
 ```terminal:execute
 command: |
-  cd spring-boot-hello-world
-  ./mvnw clean spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} -Pnative-image -DskipTests
-  cd ..
+  kp image create spring-boot-hello-world-native --tag harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} --local-path spring-boot-hello-world --env BP_NATIVE_IMAGE=true --wait
 clear: true
-```
-
-```terminal:execute
-command: docker images | grep hello-world
-clear: true
-```
-
-```terminal:execute
-command: docker push harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }}
-clear: false
 ```
 
 ```terminal:execute

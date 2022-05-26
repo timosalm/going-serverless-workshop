@@ -20,3 +20,7 @@ With ahead-of-time compilation of the Java code to a standalone executable, call
 - Runs without the need of a JVM, necessary components are included in a runtime system, called “Substrate VM” 
 - Specific to the OS and machine architecture for which it was compiled
 - Requires fewer resources, is samller, and faster than regular Java applications running on a JVM
+
+##### GraalVM - A high-performance JDK distribution
+##### Tradeoffs between JVM and Native Images
+##### Key differences between JVM and GraalVM native image platform

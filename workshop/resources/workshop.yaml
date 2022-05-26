@@ -29,7 +29,7 @@ spec:
         enabled: true
       docker:
         enabled: true
-        storage: 5Gi
+        storage: 10Gi
     env: 
     - name: TAP_INGRESS
       value: #@ data.values.tap.ingress_domain

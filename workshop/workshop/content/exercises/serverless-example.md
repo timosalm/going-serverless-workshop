@@ -7,7 +7,7 @@ clear: true
 ```terminal:execute
 command: |
   cd spring-boot-hello-world
-  ./mvnw clean spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-{{ session_namespace }} -DskipTests
+  ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-{{ session_namespace }} -DskipTests
   cd ..
 clear: true
 ```
