@@ -10,7 +10,7 @@ modules:
         exit_sign: JVM App on Knative
     exercises/serverless-example:
         name: Running a Spring Boot application on Knative
-        exit_sign: Conclusion
+        exit_sign: GraalVM
     exercises/graalvm-intro:
         name: Unleash the full potential of Serverless for our application
         exit_sign: Conclusion
