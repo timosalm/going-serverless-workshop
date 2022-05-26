@@ -31,11 +31,11 @@ before: 1
 ```editor:replace-text-selection
 file: going-serverless-workshop/samples/spring-native-accessing-resources/src/main/java/com/example/springnativeaccessingresources/SpringNativeAccessingResourcesApplication.java
 text: |
- 	  @ResourceHint(
+  @ResourceHint(
 				patterns = {
 							"src/data/test.*"
 	  		}
-	  )
+	)
 ```
 
 ```terminal:execute
