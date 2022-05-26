@@ -1,15 +1,19 @@
 
+```editor:open-file
+file: going-serverless-workshop/samples/spring-native-accessing-resources/src/main/java/com/example/springnativeaccessingresources/SpringNativeAccessingResourcesApplication.java
+line: 1
+```
 
 ```terminal:execute
 command: |
-  cd spring-boot-hello-world
+  cd going-serverless-workshop/samples/spring-native-accessing-resources
   ./mvnw clean package -DskipTests -Pnative
-  cd ..
+  cd $HOME
 clear: true
 ```
 
 ```terminal:execute
-command: ./spring-boot-hello-world/target/hello-world 
+command: ./going-serverless-workshop/samples/spring-native-accessing-resources/target/spring-native-accessing-resources
 clear: true
 ```
 
@@ -18,34 +22,32 @@ curl http://localhost:8080
 ```
 
 ```editor:select-matching-text
-file: spring-boot-hello-world/src/main/java/com/example/helloworld/HelloWorldApplication.java
-text: "@SpringBootApplication"
+file: going-serverless-workshop/samples/spring-native-accessing-resources/src/main/java/com/example/springnativeaccessingresources/SpringNativeAccessingResourcesApplication.java
+text: "	public static void main(String[] args) {"
 ```
 
 
 ```editor:replace-text-selection
-file: spring-boot-hello-world/src/main/java/com/example/helloworld/HelloWorldApplication.java
+file: going-serverless-workshop/samples/spring-native-accessing-resources/src/main/java/com/example/springnativeaccessingresources/SpringNativeAccessingResourcesApplication.java
 text: |
-  import org.springframework.nativex.hint.ResourceHint;
-
-  @ResourceHint(
-          patterns = {
-                  "src/data/hello.*"
-          }
-  )
-  @SpringBootApplication
+ 	  @ResourceHint(
+				patterns = {
+							"src/data/test.*"
+	  		}
+	  )
+	  public static void main(String[] args) {
 ```
 
 ```terminal:execute
 command: |
-  cd spring-boot-hello-world
+  cd going-serverless-workshop/samples/spring-native-accessing-resources
   ./mvnw package -DskipTests -Pnative
   cd ..
 clear: true
 ```
 
 ```terminal:execute
-command: ./spring-boot-hello-world/target/hello-world 
+command: ./going-serverless-workshop/samples/spring-native-accessing-resources/target/spring-native-accessing-resources
 clear: true
 ```
 
