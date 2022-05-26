@@ -17,6 +17,8 @@ spec:
     image: #@ "{}/tap-workshop/going-serverless-workshop:latest".format(data.values.container_registry.hostname)
     files: #@ "github.com/{}/going-serverless-workshop/workshop?ref={}".format(data.values.workshop_git.username,data.values.workshop_git.branch)
   session:
+    resources:
+      memory: 8Gi
     namespaces:
       budget: custom
     applications:

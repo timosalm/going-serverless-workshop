@@ -7,7 +7,7 @@ You can get started with Spring Native very easy by using start.spring.io to c
 
 
 ```execute
-sdk use java 22.1.0.r17-grl
+sdk use java 22.1.0.r11-grl
 ```
 
 ```terminal:execute

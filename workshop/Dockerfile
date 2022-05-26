@@ -9,6 +9,7 @@ RUN curl -s "https://get.sdkman.io" | bash && \
     echo "sdkman_auto_answer=true" > $HOME/.sdkman/etc/config && \
     echo "sdkman_auto_selfupdate=false" >> $HOME/.sdkman/etc/config
 RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk install java 22.1.0.r11-grl && export GRAALVM_HOME=/home/eduk8s/.sdkman/candidates/java/22.1.0.r11-grl/ && gu install native-image && sdk install java 11.0.15-librca"
+RUN echo "export GRAALVM_HOME=/home/eduk8s/.sdkman/candidates/java/22.1.0.r11-grl/" >> $HOME/.bashrc
 
 # TBS
 RUN curl -L -o /usr/local/bin/kp https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.4.2/kp-linux-0.4.2 && \
