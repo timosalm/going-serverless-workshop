@@ -17,6 +17,9 @@ modules:
     exercises/spring-native-intro:
         name: Spring ❤ GraalVM
         exit_sign: Conclusion
+    exercises/java-agent-assisted-config:
+        name: Java Agent-assisted configuration of GraalVM native images
+        exit_sign: Conclusion
     workshop-summary:
         name: Workshop Summary
         exit_sign: Finish Workshop  

@@ -23,7 +23,7 @@ clear: false
 ```
 
 ```terminal:execute
-command: kn service create spring-boot-hello-world --image harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-{{ session_namespace }}
+command: kn service create spring-boot-hello-world --image harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-{{ session_namespace }} --scale-min 1
 clear: true
 ```
 
@@ -48,6 +48,11 @@ watch kubectl get pods
 ```
 
 ```terminal:execute
-command: k top pods -l app=spring-boot-hello-world-00001 --containers
+command: k top pods -l app=spring-boot-hello-world-00001 --containers | grep user-container
+clear: true
+```
+
+```terminal:execute
+command: dive harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-{{ session_namespace }}
 clear: true
 ```

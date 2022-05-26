@@ -7,4 +7,5 @@ modules:
     - exercises/serverless-example
     - exercises/graalvm-intro
     - exercises/spring-native-intro
+    - exercises/java-agent-assisted-config
     - workshop-summary

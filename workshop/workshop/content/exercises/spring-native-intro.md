@@ -5,6 +5,20 @@ The goal is to support compilation of existing or new Spring Boot applications t
 
 You can get started with Spring Native very easy by using start.spring.io to create a new project.
 
+
+```execute
+sdk use java 22.1.0.r17-grl
+```
+
+```terminal:execute
+command: |
+  cd spring-boot-hello-world
+  ./mvnw -Pnative -DskipTests package 
+  cd ..
+clear: true
+```
+
+
 Let's now see how our Spring Boot sample application performs as native image on a Serverless runtime!
 ```
 ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} -Pnative-image -DskipTests
@@ -17,7 +31,7 @@ clear: true
 ```
 
 ```terminal:execute
-command: kn service create spring-boot-hello-world-native --image harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }}
+command: kn service create spring-boot-hello-world-native --image harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} --scale-min 1
 clear: true
 ```
 
@@ -40,6 +54,11 @@ watch kubectl get pods
 ```
 
 ```terminal:execute
-command: k top pods -l app=spring-boot-hello-world-native-00001 --containers
+command: k top pods -l app=spring-boot-hello-world-native-00001 --containers  | grep user-container
+clear: true
+```
+
+```terminal:execute
+command: dive harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }}
 clear: true
 ```

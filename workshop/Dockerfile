@@ -3,12 +3,12 @@ FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:a8
 # All the direct Downloads need to run as root as they are going to /usr/local/bin
 USER root
 
-RUN apt-get update && apt-get install -y maven moreutils unzip zip
+RUN apt-get update && apt-get install -y maven moreutils unzip zip build-essential libz-dev
 
 RUN curl -s "https://get.sdkman.io" | bash && \
     echo "sdkman_auto_answer=true" > $HOME/.sdkman/etc/config && \
     echo "sdkman_auto_selfupdate=false" >> $HOME/.sdkman/etc/config
-RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk install java 22.1.0.r17-grl && sdk install java 11.0.15-librca"
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk install java 22.1.0.r11-grl && export GRAALVM_HOME=/home/eduk8s/.sdkman/candidates/java/22.1.0.r11-grl/ && gu install native-image && sdk install java 11.0.15-librca"
 
 # TBS
 RUN curl -L -o /usr/local/bin/kp https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.4.2/kp-linux-0.4.2 && \
