@@ -8,7 +8,7 @@ It consists of two primary components:
 - **Serving**: Which provides middleware components that **enable rapid deployment, upgrading, routing, and automatic scaling of containers**.
 - An **Eventing** system for **consuming and producing events** which can be triggered by a variety of sources, such as events from your own apps or cloud services from.
 
-Knative Serving defines four objects that are used to define and control how a serverless workload behaves on the cluster: *Service*, *Configuration*, *Revision*, and *Route*.
+**Knative Serving** defines four objects that are used to define and control how a serverless workload behaves on the cluster: *Service*, *Configuration*, *Revision*, and *Route*.
 
 **Configuration** is the statement of what the running system should look like. You provide details about the desired container image, environment variables, and the like. Knative converts this information into lower-level Kubernetes concepts like *Deployments*. 
 

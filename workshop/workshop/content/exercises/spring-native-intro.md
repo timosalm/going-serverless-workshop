@@ -71,3 +71,9 @@ clear: true
 command: dive harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }}
 clear: true
 ```
+
+(Optional) With the `dive` command we can have look at the different layer of container image
+```terminal:execute
+command: dive harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-{{ session_namespace }}
+clear: true
+```
