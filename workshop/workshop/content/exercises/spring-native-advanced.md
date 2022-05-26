@@ -35,7 +35,7 @@ text: |
 							"src/data/test.*"
 	  		}
 	  )
-	  public static void main(String[] args) {
+	    public static void main(String[] args) {
 ```
 
 ```terminal:execute
