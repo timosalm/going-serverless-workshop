@@ -42,3 +42,7 @@ An obvious limitation of Serverless is a **loss of absolute control** over confi
 
 **Debugging, and local testing is also more difficult** and a **Vendor lock-in** seems like another inherent limitation of Serverless applications. However, different Serverless platform vendors enforce different levels of lock-in, through for example their choice of integration patterns and APIs.
 
+
+##### Summary
+![](../images/serverless-benefits.png)
+
