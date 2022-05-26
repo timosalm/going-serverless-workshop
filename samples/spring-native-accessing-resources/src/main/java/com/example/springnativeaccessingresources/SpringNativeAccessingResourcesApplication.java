@@ -6,12 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringNativeAccessingResourcesApplication {
 
-
-	//@ResourceHint(
-	//				patterns = {
-	//								"src/data/test.*"
-	//				}
-	//)
 	public static void main(String[] args) {
  		try (InputStream inputStream = HelloWorldResource.class
 						.getClassLoader()
