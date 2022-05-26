@@ -51,13 +51,42 @@ As expected, the method reverseand ca[italize methods were found via reflection.
 Let's build a native image out of it:
 ```terminal:execute
 command: |
-  native-image --no-fallback Reflection
+  $GRAALVM_HOME/bin/native-image --no-fallback Reflection
   ./reflection StringReverser reverse "what is new"
+  ./reflection StringCapitalizer capitalize "what is new"
 clear: true
 ```
 NOTE: Using `--no-fallback` option indicates to the native image that it should not revert and created a JVM image, in case the native image build would fail. Fallback images are regular JVM images which can be run using the usual java Reflection command.
 
 
+To build a native image with reflective lookup operations, apply the tracing agent to write a configuration file to be later fed into the native image build together. The config file will provide hints to the native image builder in terms of classes to be added
+```terminal:execute
+command: |
+  mkdir -p META-INF/native-image
+  java -agentlib:native-image-agent=config-output-dir=META-INF/native-image Reflection StringReverser reverse "what is new"
+  java -agentlib:native-image-agent=config-merge-dir=META-INF/native-image Reflection StringCapitalizer capitalize "what is new"
+clear: true
+```
+```editor:open-file
+file: META-INF/native-image/reflect-config.json
+line: 1
+```
+
+```terminal:execute
+command: |
+  $GRAALVM_HOME/bin/native-image --no-fallback Reflection
+  ./reflection StringReverser reverse "what is new"
+  ./reflection StringCapitalizer capitalize "what is new"
+clear: true
+```
+
+
+```terminal:execute
+command: |
+  time java Reflection StringReverser reverse "what is new"
+  time ./reflection StringReverser reverse "what is new"
+clear: true
+```
+
 
 **TODO: https://github.com/ddobrin/native-spring-on-k8s-with-graalvm-workshop/blob/main/graalvm/assisted-configuration/README.md**
-

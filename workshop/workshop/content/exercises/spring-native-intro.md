@@ -18,6 +18,15 @@ command: |
 clear: true
 ```
 
+```terminal:execute
+command: ./spring-boot-hello-world/target/hello-world
+clear: true
+```
+
+```execute-2
+ curl http://localhost:8080
+ ```
+
 
 Let's now see how our Spring Boot sample application performs as native image on a Serverless runtime!
 ```
