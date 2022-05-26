@@ -1,8 +1,5 @@
 Let’s now find out how a typical Sping Boot application performs on a Serverless runtime like Knative.
-```terminal:execute
-command: git clone https://github.com/tsalm-pivotal/spring-boot-hello-world.git
-clear: true
-```
+
 To run our sample application on top of Knative we first have to build a container. 
 Spring Boot version 2.3.0 introduced **Cloud Native Buildpack** support to simplify the container image creation.
 
@@ -17,9 +14,9 @@ The biggest benefits of CNBs are **increased security, minimized risk, and incre
 With Spring Boot 2.3 and later you can create a container image using the open source [Paketo Buildpacks](https://paketo.io) with the following commands for Maven ...
 ```terminal:execute
 command: |
-  cd spring-boot-hello-world
+  cd samples/spring-boot-hello-world
   ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-{{ session_namespace }} -DskipTests
-  cd ..
+  cd $HOME
 clear: true
 ```
 
