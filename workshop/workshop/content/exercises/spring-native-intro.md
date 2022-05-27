@@ -5,7 +5,7 @@ The goal is to **support compilation of existing or new Spring Boot applications
 You can **get started** with Spring Native very **easy by using start.spring.io to create a new project**.
 
 ```editor:open-file
-file: going-serverless-workshop/samples/spring-boot-hello-world.pom.xml
+file: going-serverless-workshop/samples/spring-boot-hello-world/pom.xml
 line: 1
 ```
 
@@ -28,11 +28,12 @@ clear: true
 
 
 Let's now see how our Spring Boot sample application performs as native image on a Serverless runtime!
-Due to the required resources to build the container image, instead of building it locally vai the following command ...
+Due to the required resources to build the container image, instead of building it locally via the following command ...
 ```
 ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} -Pnative-image -DskipTests
 ```
 ... we'll delegate it to an external component running in the cluster, the VMware Tanzu Build Service which is also available as [kpack](https://github.com/pivotal/kpack) as open source software.
+But let's first exit the running application with `ctrl + c`.
 ```terminal:execute
 command: |
   kp image create spring-boot-hello-world-native --tag harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} --local-path going-serverless-workshop/samples/spring-boot-hello-world/ --env BP_NATIVE_IMAGE=true --wait

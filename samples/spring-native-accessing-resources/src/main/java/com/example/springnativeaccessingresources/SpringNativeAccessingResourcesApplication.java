@@ -11,7 +11,11 @@ import org.springframework.nativex.hint.ResourceHint;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-
+@ResourceHint(
+				patterns = {
+							"src/data/hello.*"
+	  		}
+)
 @SpringBootApplication
 public class SpringNativeAccessingResourcesApplication {
 

@@ -1,4 +1,4 @@
-package com.example;
+package com.example.springnativereflection;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
