@@ -89,7 +89,8 @@ command: |
   ./mvnw -Pnative -DskipTests package 
   ./target/spring-native-class-initialization
   cd $HOME
-
+clear: true
+```
 
 #### Dynamic Proxy and Serialization
 To indicate to the GraalVM compiler which configuration is required to be generated for the Dynamic Proxy and Serialization features, there are the `@JdkProxyHint` and  `@SerializationHint` annotations available.
