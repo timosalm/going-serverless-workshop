@@ -1,11 +1,8 @@
 package com.example.springnativereflection;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
-import org.springframework.context.annotation.Profile;
-import org.springframework.nativex.hint.TypeHint;
 
 class StringReverser {
     static String reverse(String input) {
