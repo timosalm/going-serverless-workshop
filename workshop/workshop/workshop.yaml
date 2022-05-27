@@ -6,6 +6,7 @@ modules:
     - exercises/knative
     - exercises/serverless-example
     - exercises/graalvm-intro
+    - exercises/graalvm-example
     - exercises/graalvm-java-agent-assisted-config
     - exercises/graalvm-class-initialization-strategy
     - exercises/spring-native-intro

@@ -13,6 +13,9 @@ modules:
         exit_sign: GraalVM
     exercises/graalvm-intro:
         name: Unleash the full potential of Serverless for our application
+        exit_sign: Native Image builder 
+    exercises/graalvm-example:
+        name: Building our first Native Image
         exit_sign: Conclusion
     exercises/graalvm-java-agent-assisted-config:
         name: Java Agent-assisted configuration
