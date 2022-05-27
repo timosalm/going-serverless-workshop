@@ -11,7 +11,7 @@ The application is then **compiled by the appropriate buildpack and a container 
 
 The biggest benefits of CNBs are **increased security, minimized risk, and increased developer productivity** because they don't need to care much about the details of how to build a container.
 
-With Spring Boot 2.3 and later you can create a container image using the open source [Paketo Buildpacks](https://paketo.io) with the following commands for Maven ...
+With Spring Boot 2.3 and later you can create a container image using the open source [Paketo Buildpacks](https://paketo.io) with the following commands for Maven.
 ```terminal:execute
 command: |
   cd going-serverless-workshop/samples/spring-boot-hello-world
@@ -58,8 +58,8 @@ watch kubectl get pods
 command: hey -z 60s -c 1000 -m GET https://spring-boot-hello-world-{{session_namespace}}.{{ ENV_TAP_CNRS_SUBDOMAIN }}
 clear: true
 ```
-Exit both commands with `ctrl + c` and take a closer look at some other performance metrics. Also remember the CPU and memory consumption for later reference.
+Exit both commands with `ctrl + c` and take a closer look at some other performance metrics of the `user-container`. Also remember the CPU and memory consumption for later reference.
 ```terminal:execute
-command: k top pods -l app=spring-boot-hello-world-00001 --containers | grep user-container
+command: k top pods -l app=spring-boot-hello-world-00001 --containers
 clear: true
 ```

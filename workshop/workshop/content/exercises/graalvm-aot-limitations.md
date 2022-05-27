@@ -67,7 +67,7 @@ clear: true
 ```
 
 #### Accessing Resources
-By default, the native-image tool will not integrate any of the resources that are on the classpath into the native executable. To make calls such as `Class.getResource()` or `Class.getResourceAsStream()` (or their corresponding ClassLoader methods) return specific resources (instead of null), you must specify the resources that should be accessible at runtime. This can be achieved using a configuration file.
+By default, the native-image tool will not integrate any of the resources that are on the classpath into the native executable. To make calls such as `Class.getResource()` or `Class.getResourceAsStream()` (or their corresponding ClassLoader methods) return specific resources (instead of null), you must specify the resources that should be accessible at runtime. This can also be achieved using a configuration file.
 
 Let's first again run the following example on the JVM.
 ```editor:open-file
@@ -119,7 +119,7 @@ command: |
 clear: true
 ```
 
-Let's build a native image out of it:
+Let's build a native image out of it.
 ```terminal:execute
 command: |
   $GRAALVM_HOME/bin/native-image --no-fallback ClassInit
@@ -135,6 +135,9 @@ The list of all classes that are proven safe is output to a file via the `-H:+Pr
 command: |
   $GRAALVM_HOME/bin/native-image -H:+PrintClassInitialization ClassInit
   tree reports/
+  cat reports/class_initialization_report_20220527_082619.csv | grep UTF_8
+  cat reports/class_initialization_report_20220527_082619.csv | grep UTF_16LE
+  cat reports/class_initialization_report_20220527_082619.csv | grep UTF_32LE
 clear: true
 ```
 
