@@ -23,7 +23,7 @@ You can run the Spring AOT plugin and observe that correct configurations have b
 ```terminal:execute
 command: |
   cd going-serverless-workshop/samples/spring-native-reflection
-  ./mvnw clean package spring-aot:generate
+  ./mvnw clean package -DskipTests  spring-aot:generate
   tree target/generated-sources/spring-aot/src/main/resources/
   cd $HOME
 clear: true
