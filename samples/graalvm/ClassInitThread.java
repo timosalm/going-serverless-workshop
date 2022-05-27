@@ -1,6 +1,6 @@
 import java.nio.charset.*;
 
-public class ClassInit {
+public class ClassInitThread {
     public static void main(String[] args) {
         First.second.printIt();
     }

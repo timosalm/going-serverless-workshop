@@ -94,7 +94,7 @@ command: |
   ./classinit
 clear: true
 ```
-The execution breaks with an exception. At runtime, the platform initializes static fields. It calls the `Charset.forName()` methods. This works for UTF-8 and UTF-16LE because these charsets are available in the image. However, it does fail on the **UTF_32_LE** field because, as non-standard, it is **not by default included** in the Native Image and thus can't be found.
+The execution breaks with an `UnsupportedCharsetException` exception. At runtime, the platform initializes static fields. It calls the `Charset.forName()` methods. This works for UTF-8 and UTF-16LE because these charsets are available in the image. However, it does fail on the **UTF_32_LE** field because, as non-standard, it is **not by default included** in the Native Image and thus can't be found.
 
 What we are interested in is to understand the class initialization details at this time.
 For application classes, Native Image tries to find classes that can be safely initialized at build time. A class is considered safe if all of its relevant supertypes are safe and if the class initializer does not call any unsafe methods or initialize other unsafe classes.
@@ -115,7 +115,7 @@ command: |
 clear: true
 ```
 
-Sometimes objects instantiated during the build class initialization cannot be written out and used at runtime. Like for example opened files, running threads, opened network sockets
+**Sometimes objects instantiated during the build class initialization cannot be written out and used at runtime.** Like for example opened files, running threads, opened network sockets
 or random instances.
 
 If we run the following example you should be able to observe that the running thread could not be written out, therefore we have incorrect behavior.
