@@ -16,18 +16,15 @@ modules:
         exit_sign: Native Image builder 
     exercises/graalvm-example:
         name: Building our first Native Image
-        exit_sign: AOT limitations (1/2)
-    exercises/graalvm-java-agent-assisted-config:
+        exit_sign: AOT limitations
+    exercises/graalvm-aot-limitations:
         name: Mitigating some of the AOT compilation limitations
-        exit_sign: AOT limitations (2/2)
-    exercises/graalvm-class-initialization-strategy:
-        name: Class initialization strategy
-        exit_sign: Conclusion
+        exit_sign: Spring Native
     exercises/spring-native-intro:
         name: Spring ❤ GraalVM
         exit_sign: Conclusion
     exercises/spring-native-advanced:
-        name: Spring native advanced
+        name: Mitigating some of the AOT compilation limitations with Spring Native
         exit_sign: Conclusion
     workshop-summary:
         name: Workshop Summary

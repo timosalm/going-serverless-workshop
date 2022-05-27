@@ -67,7 +67,7 @@ clear: true
 ```
 
 #### Accessing Resources
-By default, the native-image tool will not integrate any of the resources that are on the classpath into the native executable. To make calls such as Class.getResource() or Class.getResourceAsStream() (or their corresponding ClassLoader methods) return specific resources (instead of null), you must specify the resources that should be accessible at runtime. This can be achieved using a configuration file.
+By default, the native-image tool will not integrate any of the resources that are on the classpath into the native executable. To make calls such as `Class.getResource()` or `Class.getResourceAsStream()` (or their corresponding ClassLoader methods) return specific resources (instead of null), you must specify the resources that should be accessible at runtime. This can be achieved using a configuration file.
 
 Let's first again run the following example on the JVM.
 ```editor:open-file
@@ -175,3 +175,13 @@ command: |
 clear: true
 ```
 
+#### Dynamic Proxy and Serialization
+Feel free to get the following examples working by yourself!
+```editor:open-file
+file: going-serverless-workshop/samples/graalvm/DynamicProxy.java
+line: 1
+```
+```editor:open-file
+file: going-serverless-workshop/samples/graalvm/Serialization.java
+line: 1
+```

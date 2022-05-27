@@ -7,8 +7,7 @@ modules:
     - exercises/serverless-example
     - exercises/graalvm-intro
     - exercises/graalvm-example
-    - exercises/graalvm-java-agent-assisted-config
-    - exercises/graalvm-class-initialization-strategy
+    - exercises/graalvm-aot-limitations
     - exercises/spring-native-intro
     - exercises/spring-native-advanced
     - workshop-summary
