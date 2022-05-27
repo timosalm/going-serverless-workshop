@@ -4,15 +4,15 @@ The **Native Image builder** or `native-image` is a utility that **processes all
 
 We will now compile the following example and build a native image via `native-image`utlility.
 ```editor:open-file
-file: going-serverless-workshop/samples/graalvm-hello-world/src/main/java/com/example/helloworld/HelloWorldApplication.java
+file: going-serverless-workshop/samples/graalvm/HelloWorld.java
 line: 1
 ```
 
 ```terminal:execute
 command: |
-  cd going-serverless-workshop/samples/graalvm-hello-world/src/main/java/com/example/helloworld/
-  javac HelloWorldApplication.java
-  $GRAALVM_HOME/bin/native-image going-serverless-workshop/samples/graalvm-hello-world/src/main/java/com/example/helloworld/HelloWorldApplication
+  cd going-serverless-workshop/samples/graalvm/
+  javac HelloWorld.java
+  $GRAALVM_HOME/bin/native-image HelloWorld
   cd $HOME
 clear: true
 ```
