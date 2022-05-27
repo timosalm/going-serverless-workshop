@@ -16,10 +16,10 @@ modules:
         exit_sign: Native Image builder 
     exercises/graalvm-example:
         name: Building our first Native Image
-        exit_sign: Conclusion
+        exit_sign: AOT limitations (1/2)
     exercises/graalvm-java-agent-assisted-config:
         name: Java Agent-assisted configuration
-        exit_sign: Conclusion
+        exit_sign: AOT limitations (2/2)
     exercises/graalvm-class-initialization-strategy:
         name: Class initialization strategy
         exit_sign: Conclusion
