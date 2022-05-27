@@ -7,15 +7,15 @@ import org.springframework.nativex.hint.InitializationTime;
 import org.springframework.nativex.hint.NativeHint;
 
 @NativeHint(
-  initialization = @InitializationHint(types = {
-    com.example.springnativeclassinitialization.First.class,
-		com.example.springnativeclassinitialization.Second.class
-}, initTime = InitializationTime.BUILD))
+        initialization = {@InitializationHint(types = {
+                com.example.springnativeclassinitialization.First.class,
+                com.example.springnativeclassinitialization.Second.class
+        }, initTime = InitializationTime.BUILD)})
 @SpringBootApplication
 public class SpringNativeClassInitializationApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ClassInit.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringNativeClassInitializationApplication.class, args);
+    }
 
 }
