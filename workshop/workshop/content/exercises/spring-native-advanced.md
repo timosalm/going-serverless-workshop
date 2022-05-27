@@ -11,8 +11,8 @@ You can also specify the hint as part of a `@NativeHint` declaration and specify
 @NativeHint(
   types = {
     @TypeHint(types = {
-      com.example.StringReverser.class,
-      com.example.StringCapitalizer.class
+      com.example.springnativereflection.StringReverser.class,
+      com.example.springnativereflection.StringCapitalizer.class
     }, access = AccessBits.DECLARED_METHODS)
   }
 )
@@ -33,7 +33,8 @@ clear: true
 command: |
   cd going-serverless-workshop/samples/spring-native-reflection
   ./mvnw -Pnative -DskipTests package 
-  ./target/spring-native-reflection
+  ./target/spring-native-reflection com.example.springnativereflection.StringReverser reverse "what is new"
+  ./target/spring-native-reflection com.example.springnativereflection.StringCapitalizer capitalize "what is new"
   cd $HOME
 clear: true
 ```
