@@ -45,7 +45,7 @@ But let's first exit the running application with `ctrl + c`.
 command: |
   cd going-serverless-workshop/samples/spring-boot-hello-world
   ./mvnw clean
-  kp image create spring-boot-hello-world-native --tag harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --env BP_MAVEN_BUILD_ARGUMENTS="-Dmaven.test.skip=true --initialize-at-build-time=org.springframework.util.unit.DataSize --no-transfer-progress package" --wait
+  kp image create spring-boot-hello-world-native --tag harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --env BP_NATIVE_IMAGE_BUILD_ARGUMENTS="--initialize-at-build-time=org.springframework.util.unit.DataSize" --wait
   cd $HOME
 clear: true
 ```
