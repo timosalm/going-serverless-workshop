@@ -6,7 +6,6 @@ import org.springframework.nativex.hint.TypeHint;
 
 @TypeHint(typeNames = {"com.example.springnativereflection.StringReverser"})
 @TypeHint(typeNames = {"com.example.springnativereflection.StringCapitalizer"})
-@TypeHint(typeNames = {"org.springframework.context.annotation.ProfileCondition"})
 @SpringBootApplication
 public class SpringNativeReflectionApplication {
 

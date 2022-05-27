@@ -12,8 +12,7 @@ You can also specify the hint as part of a `@NativeHint` declaration and specify
   types = {
     @TypeHint(types = {
       com.example.StringReverser.class,
-      com.example.StringCapitalizer.class,
-      org.springframework.context.annotation.ProfileCondition
+      com.example.StringCapitalizer.class
     }, access = AccessBits.DECLARED_METHODS)
   }
 )
@@ -24,7 +23,7 @@ You can run the Spring AOT plugin and observe that correct configurations have b
 command: |
   cd going-serverless-workshop/samples/spring-native-reflection
   ./mvnw clean package -DskipTests spring-aot:generate
-  tree target/generated-sources/spring-aot/src/main/resources/
+  cat target/generated-runtime-sources/spring-aot/src/main/resources/META-INF/native-image/org.springframework.aot/spring-aot/reflect-config.json | grep 'StringReverser\|StringCapitalizer'
   cd $HOME
 clear: true
 ```
