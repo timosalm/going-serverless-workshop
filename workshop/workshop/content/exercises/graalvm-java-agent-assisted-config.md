@@ -66,6 +66,38 @@ command: |
 clear: true
 ```
 
+#### Accessing Resources
+By default, the native-image tool will not integrate any of the resources that are on the classpath into the native executable. To make calls such as Class.getResource() or Class.getResourceAsStream() (or their corresponding ClassLoader methods) return specific resources (instead of null), you must specify the resources that should be accessible at runtime. This can be achieved using a configuration file.
+
+Let's first again run the following example on the JVM.
+```editor:open-file
+file: going-serverless-workshop/samples/graalvm/ResourceAccess.java
+line: 1
+```
+```terminal:execute
+command: |
+  javac ResourceAccess.java 
+  java ResourceAccess
+clear: true
+```
+
+Let's build a native image out of it:
+```terminal:execute
+command: |
+  $GRAALVM_HOME/bin/native-image --no-fallback ResourceAccess
+  ./resourceaccess
+clear: true
+```
+The execution breaks with an `NullPointerException` exception.
+
+We can also use the **tracing agent** to write a configuration file. As an alternative individual resource paths can also be specified directly to native-image via the `-H:IncludeResources` flag.
+```terminal:execute
+command: |
+  $GRAALVM_HOME/bin/native-image -H:IncludeResources=config.properties ResourceAccess
+  ./resourceaccess
+clear: true
+```
+
 #### Class Initialization
 Classes in an application need to be initialized before being used. The lifecycle of the Native Image is split into two parts: **build time and run time**.
 
@@ -75,7 +107,7 @@ Let's explore an example application consisting of a few classes in order to:
 - get a better understanding of the implications of initialization at runtime or build time
 - how to configure the initialization strategy
 
-If first again run the following example on the JVM.
+Let's first again run the following example on the JVM.
 ```editor:open-file
 file: going-serverless-workshop/samples/graalvm/ClassInit.java
 line: 1
