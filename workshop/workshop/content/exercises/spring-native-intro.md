@@ -11,11 +11,6 @@ line: 1
 As you can see, to use Spring Native for our example application, we added a dependency to the latest Spring Native library, configured the Paketo Java Native Image Buildpack in the `native` profile by setting `BP_NATIVE_IMAGE` to `true`.
 We can also see that the Spring AOT plugin was added, which performs ahead-of-time transformations required to improve native image compatibility and footprint.
 Last but not least for the second option to build your Native Image, the `native-maven-plugin` was added to our pom file to be able to invoke the native image compiler from your build.
-
-Configure the Spring Boot Maven Plugin to build a native image
-
-Add the Spring AOT plugin
-
 ```terminal:execute
 command: |
   cd going-serverless-workshop/samples/spring-boot-hello-world
@@ -37,7 +32,7 @@ clear: true
 Let's now see how our Spring Boot sample application performs as native image on a Serverless runtime!
 Due to the required resources to build the container image, instead of building it locally via the following command ...
 ```
-./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} -Pnative-image -DskipTests
+./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} -Pnative -DskipTests
 ```
 ... we'll delegate it to an external component running in the cluster, the VMware Tanzu Build Service which is also available as [kpack](https://github.com/pivotal/kpack) as open source software.
 But let's first exit the running application with `ctrl + c`.
@@ -45,7 +40,7 @@ But let's first exit the running application with `ctrl + c`.
 command: |
   cd going-serverless-workshop/samples/spring-boot-hello-world
   ./mvnw clean
-  kp image create spring-boot-hello-world-native --tag harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --env BP_MAVEN_BUILD_ARGUMENTS="-batch-mode -Dmaven.test.skip=true -Pnative-image --no-transfer-progress package" --env BP_NATIVE_IMAGE_BUILD_ARGUMENTS="--initialize-at-build-time=org.springframework.util.unit.DataSize" --wait
+  kp image create spring-boot-hello-world-native --tag harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --wait
   cd $HOME
 clear: true
 ```
@@ -74,14 +69,18 @@ command: hey -z 60s -c 1000 -m GET https://spring-boot-hello-world-native-{{sess
 clear: true
 ```
 
-The memory and CPU consumptions is also dramatically reduced.
+The memory and CPU consumptions of the `user-container` is also dramatically reduced.
 ```terminal:execute
-command: k top pods -l app=spring-boot-hello-world-native-00001 --containers  | grep user-container
+command: k top pods -l app=spring-boot-hello-world-native-00001 --containers
 clear: true
 ```
 
 (Optional) Compare the different layer of both container images with the `dive` tool.
 ```terminal:execute
 command: dive harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-native-{{ session_namespace }}
+clear: true
+```
+```terminal:execute
+command: dive harbor.emea.end2end.link/spring-io-2022/spring-boot-hello-world-{{ session_namespace }}
 clear: true
 ```
