@@ -1,4 +1,5 @@
 package com.example.springnativeclassinitialization;
+
 import java.nio.charset.*;
 
 import org.springframework.boot.CommandLineRunner;
@@ -7,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClassInit implements CommandLineRunner {
 
-	@Override
-	public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exception {
         First.second.printIt();
     }
 }

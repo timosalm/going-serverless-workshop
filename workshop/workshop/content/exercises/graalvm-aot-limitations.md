@@ -163,7 +163,7 @@ command: |
   javac ClassInitThread.java 
   java ClassInitThread
   $GRAALVM_HOME/bin/native-image  -H:+PrintClassInitialization --initialize-at-build-time=First,Second ClassInitThread
-  ./classinit 
+  ./classinitthread 
 clear: true
 ```
 
@@ -173,7 +173,7 @@ So for this example to work correctly, we should have only Second to be initiali
  ```terminal:execute
 command: |
   $GRAALVM_HOME/bin/native-image  -H:+PrintClassInitialization --initialize-at-build-time=Second ClassInitThread
-  ./classinit 
+  ./classinitthread 
   cd $HOME
 clear: true
 ```
