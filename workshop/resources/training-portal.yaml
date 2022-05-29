@@ -1,18 +1,18 @@
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: TrainingPortal
 metadata:
-  name: spring-io-2022
+  name: graalvm
 spec:
   portal:
-    title: Workshops for Spring I/O 2022
+    title: Workshops for GraalVM
     ingress:
-        hostname: spring-io-2022
+        hostname: graalvm
     registration:
         type: anonymous
     updates:
       workshop: true
     sessions:
-      maximum: 60
+      maximum: 5
     reserved: 1
   workshops:
     - name: going-serverless
