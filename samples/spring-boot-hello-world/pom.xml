@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-		<spring-native.version>0.12.0-SNAPSHOT</spring-native.version>
+		<spring-native.version>0.12.0</spring-native.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -54,42 +54,20 @@
           </image>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.springframework.experimental</groupId>
-        <artifactId>spring-aot-maven-plugin</artifactId>
-        <version>${spring-native.version}</version>
-        <executions>
-          <execution>
-            <id>test-generate</id>
-            <goals>
-              <goal>test-generate</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>generate</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
   <repositories>
     <repository>
-      <id>spring-snapshots</id>
-      <name>Spring Snapshots</name>
-      <url>https://repo.spring.io/snapshot</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
+      <id>local-artifactory</id>
+      <name>local-artifactory</name>
+      <url>https://artifactory.emea.end2end.link/artifactory/all</url>
     </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
-      <id>spring-snapshots</id>
-      <name>Spring Snapshots</name>
-      <url>https://repo.spring.io/snapshot</url>
+      <id>local-artifactory-snaps</id>
+      <name>local-artifactory</name>
+      <url>https://artifactory.emea.end2end.link/artifactory/all</url>
     </pluginRepository>
   </pluginRepositories>
 
@@ -123,6 +101,25 @@
             </configuration>
           </plugin>
           <plugin>
+            <groupId>org.springframework.experimental</groupId>
+            <artifactId>spring-aot-maven-plugin</artifactId>
+            <version>${spring-native.version}</version>
+            <executions>
+              <execution>
+                <id>test-generate</id>
+                <goals>
+                  <goal>test-generate</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>generate</id>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <groupId>org.graalvm.buildtools</groupId>
             <artifactId>native-maven-plugin</artifactId>
             <version>${native-buildtools.version}</version>
@@ -147,6 +144,5 @@
         </plugins>
       </build>
     </profile>
-  </profiles>
 
 </project>
