@@ -32,6 +32,8 @@ spec:
       docker:
         enabled: true
         storage: 10Gi
+      slides:
+        enabled: true
     env: 
     - name: TAP_INGRESS
       value: #@ data.values.tap.ingress_domain

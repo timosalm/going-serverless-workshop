@@ -7,13 +7,18 @@ spec:
     title: Workshops for GraalVM
     ingress:
         hostname: graalvm
-    registration:
-        type: anonymous
     updates:
       workshop: true
     sessions:
       maximum: 5
     reserved: 1
+    registration:
+      type: one-step
+      enabled: false
+    credentials:
+      admin:
+        username: admin
+        password: VMware1!
   workshops:
     - name: going-serverless
       expires: 140m
