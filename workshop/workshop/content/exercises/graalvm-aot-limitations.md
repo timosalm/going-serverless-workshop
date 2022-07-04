@@ -135,9 +135,9 @@ The list of all classes that are proven safe is output to a file via the `-H:+Pr
 command: |
   $GRAALVM_HOME/bin/native-image -H:+PrintClassInitialization ClassInit
   tree reports/
-  cat reports/class_initialization_report_20220527_082619.csv | grep UTF_8
-  cat reports/class_initialization_report_20220527_082619.csv | grep UTF_16LE
-  cat reports/class_initialization_report_20220527_082619.csv | grep UTF_32LE
+  cat reports/$(ls reports/ | grep "^class_initialization_report")| grep UTF_8
+  cat reports/$(ls reports/ | grep "^class_initialization_report")| grep UTF_16LE
+  cat reports/$(ls reports/ | grep "^class_initialization_report")| grep UTF_32LE
 clear: true
 ```
 
