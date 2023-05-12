@@ -1,4 +1,4 @@
-For the following demos we'll use **Knative** as a Serverless runtime.
+For the following demos, we'll use **Knative** as a Serverless runtime.
 
 ![](../images/knative.png)
 
@@ -6,7 +6,7 @@ Knative is an open-source community project which adds components for **deployin
 Unlike earlier serverless frameworks, Knative is **designed to deploy any modern app workload from monolithic applications to microservices and functions**.
 It consists of two primary components:
 - **Serving**: Which provides middleware components that **enable rapid deployment, upgrading, routing, and automatic scaling of containers**.
-- An **Eventing** system for **consuming and producing events** which can be triggered by a variety of sources, such as events from your own apps or cloud services from.
+- An **Eventing** system for **consuming and producing events** can be triggered by a variety of sources, such as events from your own apps or cloud services.
 
 **Knative Serving** defines four objects that are used to define and control how a serverless workload behaves on the cluster: *Service*, *Configuration*, *Revision*, and *Route*.
 
@@ -18,4 +18,4 @@ A **Route** maps a network endpoint to one or more *Revisions*.
 
 A **Service** combines a *Configuration* and a *Route*. This compounding makes common cases easier because everything you will need to know is in one place.
 
-In the following sections we'll use `kn`, the "official" CLI for Knative, to demonstrate some *Knative Serving* capabilities.
+In the following sections, we'll use `kn`, the "official" CLI for Knative, to demonstrate some *Knative Serving* capabilities.

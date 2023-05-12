@@ -11,7 +11,7 @@ spec:
       workshop: true
     sessions:
       maximum: 5
-    reserved: 1
+    reserved: 0
     registration:
       type: one-step
       enabled: false

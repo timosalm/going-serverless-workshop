@@ -1,15 +1,15 @@
-For GraalVM Native Images, **all the bytecode in the application needs to be observed and analysed at build time**.
+For GraalVM Native Images, all the bytecode in the application needs to be **observed** and **analyzed** at **build time**.
 
-One area the analysis process is responsible for, is to determine which classes, methods and fields need to be included in the executable. The **analysis is static**, so it might need some configuration to correctly include the parts of the program that use dynamic features of the language.
+One area the analysis process is responsible for is to determine which classes, methods and fields need to be included in the executable. The **analysis is static**, so it might need some configuration to correctly include the parts of the program that use dynamic features of the language.
 
-However, this analysis cannot always completely predict all usages of the **Java Reflection, Java Native Interface (JNI), Dynamic Proxy objects (java.lang.reflect.Proxy), or class path resources (Class.getResource)**. 
+However, this analysis cannot always completely predict all usages of the **Java Reflection, Java Native Interface (JNI), Dynamic Proxy objects (java.lang.reflect.Proxy)**, or **classpath** resources (**Class.getResource)**. 
 
 **Undetected usages of these dynamic features need to be provided to the native-image tool in the form of configuration files.**
 
-In order to **make preparing these configuration files easier** and more convenient, **GraalVM provides an agent that tracks all usages of dynamic features of an execution on a regular Java VM**. 
+To **make preparing these configuration files easier** and more convenient, GraalVM provides an **agent that tracks all usages of dynamic features of execution on a regular Java VM**. 
 During execution, the agent interfaces with the Java VM to intercept all calls that look up classes, methods, fields, resources, or request proxy accesses.
 
-We will now have a look at several examples for different language features.
+We will now have a look at several examples of different language features.
 
 ##### Reflection
 If we run the following example on the JVM everything runs as expected via reflection.
@@ -34,12 +34,12 @@ command: |
   ./reflection StringCapitalizer capitalize "what is new"
 clear: true
 ```
-As idividual classes, methods, and fields that should be accessible via reflection must be known to the native-image tool at build time, the executing of our Native Image fails with `java.lang.ClassNotFoundException` exeptions.
+As individual classes, methods, and fields that should be accessible via reflection must be known to the native-image tool at build time, the execution of our Native Image fails with `java.lang.ClassNotFoundException` exceptions.
 
-We will now use the tracing agent to write a configuration file that provide hints to the native image builder in terms of classes to be added. 
+We will now use the tracing agent to write a configuration file that provides hints to the native image builder in terms of classes to be added. 
 ```terminal:execute
 command: |
-  sdk use java 22.1.0.r11-grl
+  sdk use java 22.3.1.r11-grl
   mkdir -p META-INF/native-image
   java -agentlib:native-image-agent=config-output-dir=META-INF/native-image Reflection StringReverser reverse "what is new"
   java -agentlib:native-image-agent=config-merge-dir=META-INF/native-image Reflection StringCapitalizer capitalize "what is new"
@@ -88,9 +88,9 @@ command: |
   ./resourceaccess
 clear: true
 ```
-The execution breaks with an `NullPointerException` exception.
+The execution breaks with a `NullPointerException` exception.
 
-We can also use the **tracing agent** to write a configuration file. As an alternative individual resource paths can also be specified directly to native-image via the `-H:IncludeResources` flag.
+We can also use the **tracing agent** to write a configuration. As an alternative, individual resource paths can also be specified directly to native-image via the `-H:IncludeResources` flag.
 ```terminal:execute
 command: |
   $GRAALVM_HOME/bin/native-image -H:IncludeResources=config.properties ResourceAccess
@@ -103,9 +103,7 @@ Classes in an application need to be initialized before being used. The lifecycl
 
 **By default, classes are initialized at runtime**. Sometimes it makes sense for **optimization or other purposes to initialize some classes at build time**.
 
-Let's explore an example application consisting of a few classes in order to:
-- get a better understanding of the implications of initialization at runtime or build time
-- how to configure the initialization strategy
+Let's explore an example application consisting of a few classes to get a better understanding of the implications of initialization at runtime or build time and learn how to configure the initialization strategy.
 
 Let's first again run the following example on the JVM.
 ```editor:open-file
@@ -142,7 +140,7 @@ clear: true
 ```
 
 Two command line flags explicitly specify when a class should be initialized: `--initialize-at-build-time` and `--initialize-at-run-time`.
-Let's now move the move the initialization to build-time. Then the Charset instance is written out to the image heap and can be used at runtime.
+Let's now move the initialization to build-time. Then the Charset instance is written out to the image heap and can be used at runtime.
  ```terminal:execute
 command: |
   $GRAALVM_HOME/bin/native-image  -H:+PrintClassInitialization --initialize-at-build-time=First,Second ClassInit

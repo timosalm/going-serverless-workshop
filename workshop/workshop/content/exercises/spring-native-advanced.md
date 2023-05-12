@@ -1,4 +1,4 @@
-Let's now see how we can provide the configuration to the native-image tool that is needed for the undetected usages of dynamic languages features with Spring Native.
+Let's now see how we can provide the configuration to the native-image tool that is needed for the undetected usages of dynamic language features with Spring Native.
 
 ##### Reflection
 To bypass the class loading and reflection problems, there is the `@TypeHint` annotation available, to indicate to the GraalVM compiler which configuration is required to be generated.

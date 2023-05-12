@@ -12,15 +12,11 @@ spec:
   vendor: tanzu.vmware.com
   difficulty: beginner
   duration: 90m
-  url: https://github.com/tsalm-pivotal/going-serverless-workshop
+  url: https://github.com/tsalm-vmware/going-serverless-workshop
   content:
     image: #@ "{}/tap-workshop/going-serverless-workshop:latest".format(data.values.container_registry.hostname)
     files: #@ "github.com/{}/going-serverless-workshop/workshop?ref={}".format(data.values.workshop_git.username,data.values.workshop_git.branch)
   session:
-    resources:
-      memory: 10Gi
-    namespaces:
-      budget: custom
     applications:
       terminal:
         enabled: true
@@ -37,8 +33,6 @@ spec:
     env: 
     - name: TAP_INGRESS
       value: #@ data.values.tap.ingress_domain
-    - name: TAP_CNRS_SUBDOMAIN
-      value: #@ data.values.tap.cnrs_subdomain
     - name: CONTAINER_REGISTRY_HOSTNAME
       value: #@ data.values.container_registry.hostname
     - name: CONTAINER_REGISTRY_USERNAME
@@ -48,25 +42,6 @@ spec:
     - name: CONTAINER_REGISTRY_REPOSITORY
       value: #@ data.values.container_registry.repository
     objects:
-      - apiVersion: v1
-        kind: LimitRange
-        metadata:
-          name: resource-limits
-        spec:
-          limits:
-            - type: PersistentVolumeClaim
-              max:
-                storage: 10Gi
-      # Permissions for tap-sa (Supply Chain)
-      - apiVersion: v1
-        kind: Secret
-        metadata:
-          name: tanzu-net-credentials
-        type: kubernetes.io/dockerconfigjson
-        data:
-          #@ docker_auth = base64.encode("{}:{}".format(data.values.tanzunet.username, data.values.tanzunet.password))
-          #@ docker_creds = {"username": data.values.tanzunet.username, "password": data.values.tanzunet.password, "auth": docker_auth}
-          .dockerconfigjson: #@ base64.encode(json.encode({"auths": {"registry.tanzu.vmware.com": docker_creds}}))
       - apiVersion: rbac.authorization.k8s.io/v1
         kind: Role
         metadata:
@@ -96,34 +71,12 @@ spec:
           - kind: ServiceAccount
             name: default
             namespace: $(session_namespace)
-      # Permissions for workshop session
-      - apiVersion: rbac.authorization.k8s.io/v1
-        kind: RoleBinding
+      - apiVersion: v1
+        kind: Secret
         metadata:
-          name: $(session_namespace)-session-crb
-          namespace: $(session_namespace)
-        roleRef:
-          apiGroup: rbac.authorization.k8s.io
-          kind: ClusterRole
-          name: cluster-admin
-        subjects:
-          - kind: ServiceAccount
-            namespace: $(workshop_namespace)
-            name: $(service_account)
-
-      - apiVersion: rbac.authorization.k8s.io/v1
-        kind: RoleBinding
-        metadata:
-          name: $(session_namespace)-default-crb
-          namespace: $(session_namespace)
-        roleRef:
-          apiGroup: rbac.authorization.k8s.io
-          kind: ClusterRole
-          name: cluster-admin
-        subjects:
-          - kind: ServiceAccount
-            namespace: $(session_namespace)
-            name: default
-
-     
-     
+          name: registry-credentials
+        type: kubernetes.io/dockerconfigjson
+        data:
+          #@ docker_creds = {"username": data.values.container_registry.username, "password": data.values.container_registry.password}
+          .dockerconfigjson: #@ base64.encode(json.encode({"auths": {data.values.container_registry.hostname: docker_creds}}))
+        
