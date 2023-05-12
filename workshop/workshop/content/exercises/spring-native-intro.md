@@ -5,7 +5,7 @@ The goal is to **support the compilation of existing or new Spring Boot applicat
 You can **get started** with Spring Native very **easily by using start.spring.io to create a new project**.
 
 ```editor:open-file
-file: going-serverless-workshop/samples/spring-boot-hello-world/pom.xml
+file: samples/spring-boot-hello-world/pom.xml
 line: 1
 ```
 As you can see, to use Spring Native for our example application, we added a dependency to the latest Spring Native library and configured the Paketo Java Native Image Buildpack in the `native` profile by setting `BP_NATIVE_IMAGE` to `true`.
@@ -13,14 +13,14 @@ We can also see that the Spring AOT plugin was added, which performs ahead-of-ti
 Last but not least for the second option to build your Native Image, the `native-maven-plugin` was added to our pom file to be able to invoke the native image compiler from your build.
 ```terminal:execute
 command: |
-  cd going-serverless-workshop/samples/spring-boot-hello-world
+  cd samples/spring-boot-hello-world
   ./mvnw -Pnative -DskipTests package 
   cd $HOME
 clear: true
 ```
 
 ```terminal:execute
-command: ./going-serverless-workshop/samples/spring-boot-hello-world/target/hello-world
+command: ./samples/spring-boot-hello-world/target/hello-world
 clear: true
 ```
 
@@ -38,7 +38,7 @@ Due to the required resources to build the container image, instead of building 
 But let's first exit the running application with `ctrl + c`.
 ```terminal:execute
 command: |
-  cd going-serverless-workshop/samples/spring-boot-hello-world
+  cd samples/spring-boot-hello-world
   ./mvnw clean
   kp image create spring-boot-hello-world-native --tag {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --wait
   cd $HOME

@@ -14,12 +14,12 @@ We will now have a look at several examples of different language features.
 ##### Reflection
 If we run the following example on the JVM everything runs as expected via reflection.
 ```editor:open-file
-file: going-serverless-workshop/samples/graalvm/Reflection.java
+file: samples/graalvm/Reflection.java
 line: 1
 ```
 ```terminal:execute
 command: |
-  cd going-serverless-workshop/samples/graalvm/
+  cd samples/graalvm/
   javac Reflection.java 
   java Reflection StringReverser reverse "what is new"
   java Reflection StringCapitalizer capitalize "what is new"
@@ -46,7 +46,7 @@ command: |
 clear: true
 ```
 ```editor:open-file
-file: going-serverless-workshop/samples/graalvm/META-INF/native-image/reflect-config.json
+file: samples/graalvm/META-INF/native-image/reflect-config.json
 line: 1
 ```
 Now we're able to rebuild and rerun our Native Image.
@@ -71,7 +71,7 @@ By default, the native-image tool will not integrate any of the resources that a
 
 Let's first again run the following example on the JVM.
 ```editor:open-file
-file: going-serverless-workshop/samples/graalvm/ResourceAccess.java
+file: samples/graalvm/ResourceAccess.java
 line: 1
 ```
 ```terminal:execute
@@ -107,7 +107,7 @@ Let's explore an example application consisting of a few classes to get a better
 
 Let's first again run the following example on the JVM.
 ```editor:open-file
-file: going-serverless-workshop/samples/graalvm/ClassInit.java
+file: samples/graalvm/ClassInit.java
 line: 1
 ```
 ```terminal:execute
@@ -153,7 +153,7 @@ or random instances.
 
 If we run the following example you should be able to observe that the running thread could not be written out, therefore we have incorrect behavior.
 ```editor:open-file
-file: going-serverless-workshop/samples/graalvm/ClassInitThread.java
+file: samples/graalvm/ClassInitThread.java
 line: 1
 ```
  ```terminal:execute
@@ -179,10 +179,10 @@ clear: true
 #### Dynamic Proxy and Serialization
 Feel free to get the following examples working by yourself!
 ```editor:open-file
-file: going-serverless-workshop/samples/graalvm/DynamicProxy.java
+file: samples/graalvm/DynamicProxy.java
 line: 1
 ```
 ```editor:open-file
-file: going-serverless-workshop/samples/graalvm/Serialization.java
+file: samples/graalvm/Serialization.java
 line: 1
 ```

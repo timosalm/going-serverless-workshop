@@ -14,7 +14,7 @@ The biggest benefits of CNBs are **increased security, minimized risk, and incre
 With Spring Boot 2.3 and later you can create a container image using the open-source [Paketo Buildpacks](https://paketo.io) with the following commands for Maven.
 ```terminal:execute
 command: |
-  cd going-serverless-workshop/samples/spring-boot-hello-world
+  cd samples/spring-boot-hello-world
   ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName={{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-{{ session_namespace }} -DskipTests
   cd $HOME
 clear: true

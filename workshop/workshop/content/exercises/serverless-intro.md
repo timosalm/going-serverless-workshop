@@ -18,7 +18,7 @@ A Serverless service …
 The biggest advantage of Serverless is that it **removes so much of the complexity of building, deploying, and operating applications** in production, and at scale. 
 With FaaS for example, packaging and deploying a function is very simple compared to deploying your application on Kubernetes or even an entire server. All you have to do is to package all your code into an archive and upload it. 
 
-Another benefit of Serverless is that **scaling happens automatically**, with no effort. With this capability, Serverless **reduces** resource cost** because you don’t have to over-provision and pay for the capacity necessary to handle your peak expected load, even when for example your application isn’t experiencing that load. 
+Another benefit of Serverless is that **scaling happens automatically**, with no effort. With this capability, Serverless **reduces resource cost** because you don’t have to over-provision and pay for the capacity necessary to handle your peak expected load, even when for example your application isn’t experiencing that load. 
 So for any application that has an inconsistent load, you will see resource cost savings by using Serverless. 
 
 With BaaS you have less logic to develop yourself and less operations work and with FaaS software development and deployment are simplified because much of the infrastructural code is moved out to the platform and you just have to upload basic code units which leads to **reduced labor cost**.
