@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.0</version>
+		<version>2.7.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
@@ -15,7 +15,8 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-		<spring-native.version>0.12.0-SNAPSHOT</spring-native.version>
+    <!-- Each Spring Native version only supports a specific Spring Boot version  -->
+		<spring-native.version>0.12.2</spring-native.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -26,6 +27,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+    <!-- Maven Dependency for Spring Native -->
 		<dependency>
 		      <groupId>org.springframework.experimental</groupId>
 		      <artifactId>spring-native</artifactId>
@@ -44,8 +46,8 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <!-- To build an OCI image, we need to explicitly configure a build pack. -->
         <configuration>
-          <classifier>${repackage.classifier}</classifier>
           <image>
             <builder>paketobuildpacks/builder:tiny</builder>
             <env>
@@ -54,17 +56,12 @@
           </image>
         </configuration>
       </plugin>
+      <!-- Performs ahead-of-time transformations helpful in improving the footprint and compatibility of the native image. -->
       <plugin>
         <groupId>org.springframework.experimental</groupId>
         <artifactId>spring-aot-maven-plugin</artifactId>
         <version>${spring-native.version}</version>
         <executions>
-          <execution>
-            <id>test-generate</id>
-            <goals>
-              <goal>test-generate</goal>
-            </goals>
-          </execution>
           <execution>
             <id>generate</id>
             <goals>
@@ -75,7 +72,7 @@
       </plugin>
     </plugins>
   </build>
-<repositories>
+  <repositories>
     <repository>
       <id>local-artifactory</id>
       <name>local-artifactory</name>
@@ -90,60 +87,41 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <!-- This profile will invoke the native-image compiler from the build during the package phase. -->
   <profiles>
     <profile>
-      <id>native</id>
-      <properties>
-        <repackage.classifier>exec</repackage.classifier>
-        <native-buildtools.version>0.9.11</native-buildtools.version>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>org.junit.platform</groupId>
-          <artifactId>junit-platform-launcher</artifactId>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <configuration>
-              <classifier>${repackage.classifier}</classifier>
-              <image>
-                <builder>paketobuildpacks/builder:tiny</builder>
-                <env>
-                  <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                </env>
-              </image>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.graalvm.buildtools</groupId>
-            <artifactId>native-maven-plugin</artifactId>
-            <version>${native-buildtools.version}</version>
-            <extensions>true</extensions>
-            <executions>
-              <execution>
-                <id>test-native</id>
-                <phase>test</phase>
-                <goals>
-                  <goal>test</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>build-native</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>build</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
+        <id>native</id>
+        <build>
+            <plugins>
+                <plugin>
+                  <groupId>org.springframework.boot</groupId>
+                  <artifactId>spring-boot-maven-plugin</artifactId>
+                  <configuration>
+                    <classifier>exec</classifier>
+                    <image>
+                      <builder>paketobuildpacks/builder:tiny</builder>
+                      <env>
+                        <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                      </env>
+                    </image>
+                  </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.graalvm.buildtools</groupId>
+                    <artifactId>native-maven-plugin</artifactId>
+                    <version>0.9.22</version>
+                    <executions>
+                        <execution>
+                            <id>build-native</id>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                            <phase>package</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
     </profile>
   </profiles>
-
 </project>
