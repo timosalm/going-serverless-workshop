@@ -42,35 +42,36 @@ spec:
     - name: CONTAINER_REGISTRY_REPOSITORY
       value: #@ data.values.container_registry.repository
     objects:
+      # Permissions for workshop session
       - apiVersion: rbac.authorization.k8s.io/v1
         kind: Role
         metadata:
-          name: $(session_namespace)-default
+          name: $(session_namespace)-session
+          namespace: $(session_namespace)
         rules:
         - apiGroups: [kpack.io]
           resources: [images]
           verbs: ['*']
-        - apiGroups: [""]
-          resources: ['configmaps']
-          verbs: ['*']
-        - apiGroups: [""]
-          resources: ['pods']
-          verbs: ['list']
         - apiGroups: [serving.knative.dev]
-          resources: ['services']
+          resources: [services]
+          verbs: ['*']
+        - apiGroups: [metrics.k8s.io]
+          resources: [pods]
           verbs: ['*']
       - apiVersion: rbac.authorization.k8s.io/v1
         kind: RoleBinding
         metadata:
-          name: $(session_namespace)-default
+          name: $(session_namespace)-session-rb
+          namespace: $(session_namespace)
         roleRef:
           apiGroup: rbac.authorization.k8s.io
           kind: Role
-          name: $(session_namespace)-default
+          name: $(session_namespace)-session
         subjects:
           - kind: ServiceAccount
-            name: default
-            namespace: $(session_namespace)
+            namespace: $(workshop_namespace)
+            name: $(service_account)
+      # Resources      
       - apiVersion: v1
         kind: Secret
         metadata:

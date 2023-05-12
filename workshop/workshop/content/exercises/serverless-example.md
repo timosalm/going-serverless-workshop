@@ -46,7 +46,7 @@ clear: true
 
 If we have a look at the application's logs, we can see how long it took until the application was started. Remember this number as a reference for later.
 ```terminal:execute
-command: k logs -l app=spring-boot-hello-world-00001 -c user-container | grep "Started HelloWorldApplication"
+command: kubectl logs -l app=spring-boot-hello-world-00001 -c user-container | grep "Started HelloWorldApplication"
 clear: true
 ```
 

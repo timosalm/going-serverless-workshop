@@ -32,7 +32,7 @@ clear: true
 Let's now see how our Spring Boot sample application performs as a native image on a Serverless runtime!
 Due to the required resources to build the container image, instead of building it locally via the following command ...
 ```
-./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName={{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} -Pnative -DskipTests
+./mvnw package spring-boot:build-image -Dspring-boot.build-image.imageName={{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} -Pnative -DskipTests
 ```
 ... we'll delegate it to an external component running in the cluster, the VMware Tanzu Build Service which is also available as [kpack](https://github.com/pivotal/kpack) as open source software.
 But let's first exit the running application with `ctrl + c`.
@@ -56,7 +56,7 @@ clear: true
 
 We can also compare the startup time to the same application running on the JVM ...
 ```terminal:execute
-command: k logs -l app=spring-boot-hello-world-native-00001 -c user-container | grep "Started HelloWorldApplication"
+command: kubectl logs -l app=spring-boot-hello-world-native-00001 -c user-container | grep "Started HelloWorldApplication"
 clear: true
 ```
 
@@ -71,7 +71,7 @@ clear: true
 
 The memory and CPU consumption of the `user-container` is also dramatically reduced.
 ```terminal:execute
-command: k top pods -l app=spring-boot-hello-world-native-00001 --containers
+command: kubectl top pods -l app=spring-boot-hello-world-native-00001 --containers
 clear: true
 ```
 
