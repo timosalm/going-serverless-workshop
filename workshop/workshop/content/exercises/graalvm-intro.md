@@ -14,11 +14,11 @@ A JIT compiler **translates Java bytecode into native machine language while exe
 
 The **downside** is that the JIT compilation **impacts the application startup time** and a Java program running on a Java Virtual Machine is always **more resource consuming than native execution**. 
 
-With **ahead-of-time compilation** of the Java code to a standalone executable, called a **Native Image**, you are able to mitigate these problems and make your **application start faster and consume fewer resources**.
+With **ahead-of-time compilation** of the Java code to a standalone executable, called a **native image**, you are able to mitigate these problems and make your **application start faster and consume fewer resources**.
 
 ![](../images/jit-vs-aot.png)
 
-##### What are Native Images?
+##### What are native images?
 - Standalone executable of ahead-of-time compiled Java code
 - Includes the application classes, classes from its dependencies, runtime library classes, and statically linked native code from JDK
 - Runs without the need of a JVM, necessary components like for memory management, thread scheduling, and so on are included in a runtime system, called “Substrate VM” 
@@ -34,20 +34,20 @@ GraalVM **adds an advanced just-in-time (JIT) optimizing compiler**, which is w
 
 GraalVM offers **three runtime modes**:
 - JVM runtime mode
-- Native Image 
+- Native image 
 - Java on Truffle for those none JVM languages
 
 ![](../images/graalvm.png)
 
-##### Tradeoffs between JVM and Native Images
-**Native Images** are able to **improve both, the startup time and resource consumption** for your applications deployed on a serverless runtime, but you have to keep in mind that there are some trade-offs compared to the JVM.
+##### Tradeoffs between JVM and native images
+**Native images** are able to **improve both, the startup time and resource consumption** for your applications deployed on a serverless runtime, but you have to keep in mind that there are some trade-offs compared to the JVM.
 
 They **offer lower throughput and higher latency** because they can’t optimize hot paths during runtime as much as the JVM can. 
 The **compilation takes much longer and consumes more resources**, which is bad for developer productivity. 
 Finally, the **platform is also less mature**, but it evolves and improves quickly.
-The Native Image plugin is available as an Early Adopter technology in GraalVM Enterprise and can be used in production, supported by Oracle as part of a paid GraalVM Enterprise subscription. However, it is not covered by Oracle’s standard warranty.
+The native image plugin is available as an Early Adopter technology in GraalVM Enterprise and can be used in production, supported by Oracle as part of a paid GraalVM Enterprise subscription. However, it is not covered by Oracle’s standard warranty.
 
-Additionally, VMware Tanzu offers Enterprise Support for Spring Boot Native Applications compiled with the BellSoft Liberica Native Image Kit which is based on GraalVM Open Source.
+Additionally, VMware Tanzu offers Enterprise Support for Spring Boot Native Applications compiled with the BellSoft Liberica native image Kit which is based on GraalVM Open Source.
 
 ![](../images/graalvm-tradeoffs.png)
 ##### Key differences between JVM and GraalVM native image platform

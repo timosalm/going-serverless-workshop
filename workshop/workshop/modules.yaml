@@ -1,6 +1,6 @@
 modules:
     workshop-overview:
-        name: Going Serverless using the Spring Framework ecosystem
+        name: Going Serverless with Spring Boot 3
         exit_sign: Serverless
     exercises/serverless-intro: 
         name: What Is Serverless?
@@ -13,18 +13,18 @@ modules:
         exit_sign: GraalVM
     exercises/graalvm-intro:
         name: Unleash the full potential of Serverless for our application
-        exit_sign: Native Image builder 
+        exit_sign: native image builder 
     exercises/graalvm-example:
-        name: Building our first Native Image
+        name: Building our first native image
         exit_sign: AOT limitations (GraalVM)
     exercises/graalvm-aot-limitations:
         name: Mitigating some of the AOT compilation limitations
-        exit_sign: Spring Native
+        exit_sign: Spring Boot
     exercises/spring-native-intro:
         name: Spring ❤ GraalVM
-        exit_sign: AOT limitations (Spring Native)
+        exit_sign: AOT limitations (Spring Boot)
     exercises/spring-native-advanced:
-        name: Mitigating some of the AOT compilation limitations with Spring Native
+        name: Mitigating some of the AOT compilation limitations with Spring Boot
         exit_sign: Conclusion
     workshop-summary:
         name: Workshop Summary

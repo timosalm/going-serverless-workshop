@@ -1,4 +1,4 @@
-For GraalVM Native Images, all the bytecode in the application needs to be **observed** and **analyzed** at **build time**.
+For GraalVM native images, all the bytecode in the application needs to be **observed** and **analyzed** at **build time**.
 
 One area the analysis process is responsible for is to determine which classes, methods and fields need to be included in the executable. The **analysis is static**, so it might need some configuration to correctly include the parts of the program that use dynamic features of the language.
 
@@ -34,7 +34,7 @@ command: |
   ./reflection StringCapitalizer capitalize "what is new"
 clear: true
 ```
-As individual classes, methods, and fields that should be accessible via reflection must be known to the native-image tool at build time, the execution of our Native Image fails with `java.lang.ClassNotFoundException` exceptions.
+As individual classes, methods, and fields that should be accessible via reflection must be known to the native-image tool at build time, the execution of our native image fails with `java.lang.ClassNotFoundException` exceptions.
 
 We will now use the tracing agent to write a configuration file that provides hints to the native image builder in terms of classes to be added. 
 ```terminal:execute
@@ -49,7 +49,7 @@ clear: true
 file: samples/graalvm/META-INF/native-image/reflect-config.json
 line: 1
 ```
-Now we're able to rebuild and rerun our Native Image.
+Now we're able to rebuild and rerun our native image.
 ```terminal:execute
 command: |
   $GRAALVM_HOME/bin/native-image --no-fallback Reflection
@@ -58,7 +58,7 @@ command: |
 clear: true
 ```
 
-Let's also compare the performance of the application running on the JDK vs as a Native Image.
+Let's also compare the performance of the application running on the JDK vs as a native image.
 ```terminal:execute
 command: |
   time java Reflection StringReverser reverse "what is new"
@@ -99,7 +99,7 @@ clear: true
 ```
 
 #### Class Initialization
-Classes in an application need to be initialized before being used. The lifecycle of the Native Image is split into two parts: **build time and run time**.
+Classes in an application need to be initialized before being used. The lifecycle of the native image is split into two parts: **build time and run time**.
 
 **By default, classes are initialized at runtime**. Sometimes it makes sense for **optimization or other purposes to initialize some classes at build time**.
 
@@ -124,10 +124,10 @@ command: |
   ./classinit
 clear: true
 ```
-The execution breaks with an `UnsupportedCharsetException` exception. At runtime, the platform initializes static fields. It calls the `Charset.forName()` methods. This works for UTF-8 and UTF-16LE because these charsets are available in the image. However, it does fail on the **UTF_32_LE** field because, as non-standard, it is **not by default included** in the Native Image and thus can't be found.
+The execution breaks with an `UnsupportedCharsetException` exception. At runtime, the platform initializes static fields. It calls the `Charset.forName()` methods. This works for UTF-8 and UTF-16LE because these charsets are available in the image. However, it does fail on the **UTF_32_LE** field because, as non-standard, it is **not by default included** in the native image and thus can't be found.
 
 What we are interested in is to understand the class initialization details at this time.
-For application classes, Native Image tries to find classes that can be safely initialized at build time. A class is considered safe if all of its relevant supertypes are safe and if the class initializer does not call any unsafe methods or initialize other unsafe classes.
+For application classes, native image tries to find classes that can be safely initialized at build time. A class is considered safe if all of its relevant supertypes are safe and if the class initializer does not call any unsafe methods or initialize other unsafe classes.
 The list of all classes that are proven safe is output to a file via the `-H:+PrintClassInitialization` command line argument to the native-image tool.
 ```terminal:execute
 command: |

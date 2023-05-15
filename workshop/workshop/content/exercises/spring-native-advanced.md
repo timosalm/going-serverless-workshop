@@ -1,4 +1,4 @@
-Let's now see how we can provide the configuration to the native-image tool that is needed for the undetected usages of dynamic language features with Spring Native.
+Let's now see how we can provide the configuration to the native-image tool that is needed for the undetected usages of dynamic language features with Spring Boot.
 
 ##### Reflection
 To bypass the class loading and reflection problems, there is the `@TypeHint` annotation available, to indicate to the GraalVM compiler which configuration is required to be generated.
@@ -64,7 +64,7 @@ command: |
 clear: true
 ```
 #### Class Initialization
-We can control the initialization with Spring Native with the `@NativeHint` declaration.
+We can control the initialization with Spring Boot with the `@NativeHint` declaration.
 ```editor:open-file
 file: samples/spring-native-class-initialization/src/main/java/com/example/springnativeclassinitialization/SpringNativeClassInitializationApplication.java
 line: 1

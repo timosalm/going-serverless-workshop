@@ -7,8 +7,8 @@ kind: Workshop
 metadata:
   name: going-serverless
 spec:
-  title: Going Serverless using the Spring Framework ecosystem
-  description: A workshop that demonstrates how to implement your serverless applications and compile them to GraalVM native images with the robust collection of related functionality the Spring Framework ecosystem provides.
+  title: Going Serverless with Spring Boot 3
+  description: A workshop that demonstrates how to implement your serverless applications and compile them to GraalVM native images with Spring Boot 3.
   vendor: tanzu.vmware.com
   difficulty: beginner
   duration: 90m

@@ -1,16 +1,19 @@
-**Spring Native provides incubating support for compiling Spring applications to lightweight Native Images using the GraalVM native-image compiler.**
+**Spring Boot 3 added support for compiling Spring applications to lightweight native images using the GraalVM native-image compiler.**
 
-The goal is to **support the compilation of existing or new Spring Boot applications to Native Images - Unchanged!**
+The goal is to **support the compilation of existing or new Spring Boot applications to native images - Unchanged!**
 
-You can **get started** with Spring Native very **easily by using start.spring.io to create a new project**.
+You can **get started** very **easily by using start.spring.io to create a new project**.
 
 ```editor:open-file
 file: samples/spring-boot-hello-world/pom.xml
 line: 1
 ```
-As you can see, to use Spring Native for our example application, we added a dependency to the latest Spring Native library and configured the Paketo Java Native Image Buildpack in the `native` profile by setting `BP_NATIVE_IMAGE` to `true`.
-We can also see that the Spring AOT plugin was added, which performs ahead-of-time transformations required to improve native image compatibility and footprint.
-Last but not least for the second option to build your Native Image, the `native-maven-plugin` was added to our pom file to be able to invoke the native image compiler from your build.
+
+The `spring-boot-starter-parent` declares a native profile that configures the executions that need to run to create a native image. You can activate profiles using the `-P` flag on the command line.
+
+Spring Boot includes buildpack support for native images directly for both Maven and Gradle. The resulting image doesn’t contain a JVM, which leads to smaller images.
+
+For the second option to build your native image, the `native-maven-plugin` was added to our pom file to be able to invoke the native image compiler from your build.
 ```terminal:execute
 command: |
   cd samples/spring-boot-hello-world
@@ -29,12 +32,12 @@ clear: true
  ```
 
 
-Let's now see how our Spring Boot sample application performs as a native image on a Serverless runtime!
-Due to the required resources to build the container image, instead of building it locally via the following command ...
+Let's now see how our Spring Boot sample application **performs as a native image on a Serverless runtime**!
+Due to the required resources to build the container image, **instead of building it locally** via the following command ...
 ```
 ./mvnw package spring-boot:build-image -Dspring-boot.build-image.imageName={{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} -Pnative -DskipTests
 ```
-... we'll delegate it to an external component running in the cluster, the VMware Tanzu Build Service which is also available as [kpack](https://github.com/pivotal/kpack) as open source software.
+... we'll **delegate it to an external component running in the cluster**, the VMware Tanzu Build Service which is also available as [kpack](https://github.com/pivotal/kpack) as open source software.
 But let's first exit the running application with `ctrl + c`.
 ```terminal:execute
 command: |

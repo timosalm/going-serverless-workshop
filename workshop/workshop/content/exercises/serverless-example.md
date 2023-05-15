@@ -11,7 +11,7 @@ The application is then **compiled by the appropriate buildpack and a container 
 
 The biggest benefits of CNBs are **increased security, minimized risk, and increased developer productivity** because they don't need to care much about the details of how to build a container.
 
-With Spring Boot 2.3 and later you can create a container image using the open-source [Paketo Buildpacks](https://paketo.io) with the following commands for Maven.
+With Spring Boot 2.3 and later you can create a container image using the open-source [Paketo buildpacks](https://paketo.io) with the following commands for Maven.
 ```terminal:execute
 command: |
   cd samples/spring-boot-hello-world

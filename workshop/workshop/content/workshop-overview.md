@@ -1,3 +1,3 @@
 **Serverless applications** are **event-driven** and take advantage of modern cloud computing capabilities and abstractions to allow **developers to shift focus to writing business logic** while not dealing with the complexity of the infrastructure their code runs on.
 
-This workshop will teach you how to **implement your serverless applications** and **compile them to GraalVM native images** with the robust collection of related functionality the Spring Framework ecosystem provides.
+This workshop will teach you how to **implement your serverless applications** and **compile them to GraalVM native images** with Spring Boot 3.
