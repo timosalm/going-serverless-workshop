@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloWorldResource {
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<String> fetchGreeting() {
         return ResponseEntity.ok("Hello from VMware Tanzu!");
     }
