@@ -12,7 +12,7 @@ The **execution of Java bytecode by an interpreter is always slower** than the e
 
 A JIT compiler **translates Java bytecode into native machine language while executing the program for parts of a program that are frequently executed**. The translated parts of the program can then be **executed much faster**. This way a **JIT compiler can significantly speed up the overall execution time**. 
 
-The **downside** is that the JIT compilation **impacts the** application startup time** and a Java program running on a Java Virtual Machine is always **more resource consuming than native execution**. 
+The **downside** is that the JIT compilation **impacts the application startup time** and a Java program running on a Java Virtual Machine is always **more resource consuming than native execution**. 
 
 With **ahead-of-time compilation** of the Java code to a standalone executable, called a **Native Image**, you are able to mitigate these problems and make your **application start faster and consume fewer resources**.
 
