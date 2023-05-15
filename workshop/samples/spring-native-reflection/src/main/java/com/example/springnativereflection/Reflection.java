@@ -19,8 +19,8 @@ class StringCapitalizer {
 @Component
 public class Reflection implements CommandLineRunner {
 
-	@Override
-	public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exception {
         String className = args[0];
         String methodName = args[1];
         String input = args[2];

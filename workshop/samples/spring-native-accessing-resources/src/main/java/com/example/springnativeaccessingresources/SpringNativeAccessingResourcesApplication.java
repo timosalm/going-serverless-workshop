@@ -11,23 +11,23 @@ import org.springframework.nativex.hint.ResourceHint;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 @ResourceHint(
-				patterns = {
-							"src/data/hello.*"
-	  		}
+        patterns = {
+              "src/data/hello.*"
+        }
 )
 @SpringBootApplication
 public class SpringNativeAccessingResourcesApplication {
 
-	public static void main(String[] args) {
- 		try (InputStream inputStream = SpringNativeAccessingResourcesApplication.class
-						.getClassLoader()
-						.getResourceAsStream("src/data/hello.txt")) {
-		Reader reader = new InputStreamReader(inputStream, UTF_8);
-		String greeting = FileCopyUtils.copyToString(reader);
-		System.out.println(greeting);
- 		} catch (IOException e) {
+  public static void main(String[] args) {
+     try (InputStream inputStream = SpringNativeAccessingResourcesApplication.class
+            .getClassLoader()
+            .getResourceAsStream("src/data/hello.txt")) {
+    Reader reader = new InputStreamReader(inputStream, UTF_8);
+    String greeting = FileCopyUtils.copyToString(reader);
+    System.out.println(greeting);
+     } catch (IOException e) {
         e.printStackTrace();
     }
-	}
+  }
 
 }

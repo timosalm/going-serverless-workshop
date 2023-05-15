@@ -10,8 +10,8 @@ import org.springframework.nativex.hint.TypeHint;
 @SpringBootApplication
 public class SpringNativeReflectionApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringNativeReflectionApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(SpringNativeReflectionApplication.class, args);
+  }
 
 }
