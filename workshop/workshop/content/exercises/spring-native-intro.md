@@ -17,7 +17,7 @@ For the second option to build your native image, the `native-maven-plugin` was 
 ```terminal:execute
 command: |
   cd samples/spring-boot-hello-world
-  ./mvnw -Pnative -DskipTests package 
+  ./mvnw -Pnative -DskipTests native:compile 
   cd $HOME
 clear: true
 ```
@@ -43,7 +43,7 @@ But let's first exit the running application with `ctrl + c`.
 command: |
   cd samples/spring-boot-hello-world
   ./mvnw clean
-  kp image create spring-boot-hello-world-native --tag {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --wait
+  kp image create spring-boot-hello-world-native --tag {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --env BP_JVM_VERSION=17 --wait
   cd $HOME
 clear: true
 ```

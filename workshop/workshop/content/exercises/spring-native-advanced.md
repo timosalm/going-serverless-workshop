@@ -30,7 +30,7 @@ clear: true
 ```terminal:execute
 command: |
   cd samples/spring-native-reflection
-  ./mvnw -Pnative -DskipTests package 
+  ./mvnw -Pnative -DskipTests native:compile 
   ./target/spring-native-reflection com.example.springnativereflection.StringReverser reverse "what is new"
   ./target/spring-native-reflection com.example.springnativereflection.StringCapitalizer capitalize "what is new"
   cd $HOME
@@ -58,7 +58,7 @@ clear: true
 ```terminal:execute
 command: |
   cd samples/spring-native-accessing-resources
-  ./mvnw -Pnative -DskipTests package 
+  ./mvnw -Pnative -DskipTests native:compile 
   ./target/spring-native-accessing-resources
   cd $HOME
 clear: true
@@ -84,7 +84,7 @@ clear: true
 ```terminal:execute
 command: |
   cd samples/spring-native-class-initialization
-  ./mvnw -Pnative -DskipTests package 
+  ./mvnw -Pnative -DskipTests native:compile 
   ./target/spring-native-class-initialization
   cd $HOME
 clear: true
