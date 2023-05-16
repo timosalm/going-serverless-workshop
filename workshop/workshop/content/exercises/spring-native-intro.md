@@ -43,7 +43,7 @@ But let's first exit the running application with `ctrl + c`.
 command: |
   cd samples/spring-boot-hello-world
   ./mvnw clean
-  kp image create spring-boot-hello-world-native --tag {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --env BP_JVM_VERSION=17 --wait
+  kp image create spring-boot-hello-world-native --tag {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --env BP_JVM_VERSION=17 --env BP_MAVEN_BUILD_ARGUMENTS="-Dmaven.test.skip=true --no-transfer-progress package -Pnative" --env BP_NATIVE_IMAGE_BUILD_ARGUMENTS="--no-fallback" --wait
   cd $HOME
 clear: true
 ```

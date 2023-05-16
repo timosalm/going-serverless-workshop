@@ -39,7 +39,7 @@ As individual classes, methods, and fields that should be accessible via reflect
 We will now use the tracing agent to write a configuration file that provides hints to the native image builder in terms of classes to be added. 
 ```terminal:execute
 command: |
-  sdk use java 22.3.1.r11-grl
+  sdk use java 22.3.1.r17-grl
   mkdir -p META-INF/native-image
   java -agentlib:native-image-agent=config-output-dir=META-INF/native-image Reflection StringReverser reverse "what is new"
   java -agentlib:native-image-agent=config-merge-dir=META-INF/native-image Reflection StringCapitalizer capitalize "what is new"
