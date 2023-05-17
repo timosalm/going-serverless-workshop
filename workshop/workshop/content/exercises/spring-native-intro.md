@@ -1,6 +1,10 @@
 **Spring Boot 3 added support for compiling Spring applications to lightweight native images using the GraalVM native-image compiler.**
 
-The goal is to **support the compilation of existing or new Spring Boot applications to native images - Unchanged!**
+Spring Boot applications are typically dynamic and configuration is performed at runtime, but when creating native images with GraalVM, **a closed-world approach is used to retain static analysis benefits**. This means implies the following restrictions:
+- The classpath is fixed and fully defined at build time
+- The beans defined in your application cannot change at runtime. So the `@Profile` annotation, profile-specific configuration, and Properties that change if a bean is created are not supported
+
+When these restrictions are in place, it becomes possible for Spring to perform ahead-of-time processing during build-time and generate additional assets that GraalVM can use. 
 
 You can **get started** very **easily by using start.spring.io to create a new project**.
 

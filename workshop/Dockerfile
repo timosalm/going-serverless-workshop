@@ -1,4 +1,4 @@
-FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:a8870aa60b45495d298df5b65c69b3d7972608da4367bd6e69d6e392ac969dd4
+FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:c184e9399d2385807833be0a9f1718c40caa142b6e1c3ddf64fa969716dcd4e3
 
 # All the direct Downloads need to run as root as they are going to /usr/local/bin
 USER root
@@ -11,10 +11,6 @@ RUN curl -s "https://get.sdkman.io" | bash && \
 # Don't forget to update the `sdk use` commands in the workshop instructions if you update the versions    
 RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk install java 22.3.1.r17-grl && export GRAALVM_HOME=/home/eduk8s/.sdkman/candidates/java/22.3.1.r17-grl/ && gu install native-image && sdk install java 17.0.7-librca"
 RUN echo "export GRAALVM_HOME=/home/eduk8s/.sdkman/candidates/java/22.3.1.r17-grl/" >> $HOME/.bashrc
-
-RUN curl -fsSL https://code-server.dev/install.sh | sh -s -- --version=4.12.0
-RUN cp -rf /usr/lib/code-server/* /opt/code-server/
-RUN rm -rf /usr/lib/code-server /usr/bin/code-server
 
 # TBS
 RUN curl -L -o /usr/local/bin/kp https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.10.0/kp-linux-amd64-0.10.0 && \
