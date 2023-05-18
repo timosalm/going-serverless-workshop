@@ -34,7 +34,7 @@ clear: false
 
 Let's now deploy our application with Knative.
 ```terminal:execute
-command: kn service create spring-boot-hello-world --image {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-{{ session_namespace }} --scale-min 1
+command: kn service create spring-boot-hello-world --image {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-{{ session_namespace }}
 clear: true
 ```
 

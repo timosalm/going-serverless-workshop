@@ -62,7 +62,7 @@ clear: true
 #### Class Initialization
 As the Spring team recommends **limiting class initialization at build time** as much as possible due to side effects like for example static loggers and their configuration getting also initialized, there is on purpose **no way to provide those hints** in a programmatic or declarative way available **in Spring**. Providing hints for the code that will be executed on class initialization should fulfill the need for initialization at build time in most cases.
 
-For those few cases where that's not the case like in our example, we can provide native image build configuration in `META-INF/native-image` (sub-)directories and use it **to construct native-image command-line options**.
+For those few cases where that's not the case like in our example, we can provide [native image build configuration](https://www.graalvm.org/22.3/reference-manual/native-image/overview/BuildConfiguration/) in `META-INF/native-image` (sub-)directories and use it **to construct native-image command-line options**.
 
 To avoid a situation when constituent parts of a project are built with overlapping configurations, we recommended you use subdirectories within META-INF/native-image.
 

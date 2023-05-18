@@ -127,7 +127,7 @@ clear: true
 The execution breaks with an `UnsupportedCharsetException` exception. At runtime, the platform initializes static fields. It calls the `Charset.forName()` methods. This works for UTF-8 and UTF-16LE because these charsets are available in the image. However, it does fail on the **UTF_32_LE** field because, as non-standard, it is **not by default included** in the native image and thus can't be found.
 
 What we are interested in is to understand the class initialization details at this time.
-For application classes, native image tries to find classes that can be safely initialized at build time. A class is considered safe if all of its relevant supertypes are safe and if the class initializer does not call any unsafe methods or initialize other unsafe classes.
+For application classes, **native image tries to find classes that can be safely initialized at build time**. A class is considered safe if all of its relevant supertypes are safe and if the class initializer does not call any unsafe methods or initialize other unsafe classes.
 The list of all classes that are proven safe is output to a file via the `-H:+PrintClassInitialization` command line argument to the native-image tool.
 ```terminal:execute
 command: |
