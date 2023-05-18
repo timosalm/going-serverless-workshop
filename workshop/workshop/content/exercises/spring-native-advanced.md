@@ -13,7 +13,7 @@ line: 26
 ```
 If at all possible, `@ImportRuntimeHints` should be used as close as possible to the component that requires the hints. This way, if the component is not contributed to the BeanFactory, the hints won’t be contributed either.
 
-Before creating a native image, let's run the AOT compilation and observe that correct configurations have been generated.
+Before creating a native image, let's run the AOT compilation and observe that the correct configurations have been generated.
 ```terminal:execute
 command: |
   cd samples/spring-native-reflection
@@ -41,7 +41,7 @@ file: samples/spring-native-accessing-resources/src/main/java/com/example/spring
 line: 1
 ```
 
-You can run the Spring AOT plugin and observe that correct configurations have been generated, ...
+You can run the AOT compilation and observe that the correct configurations have been generated before we create the native image and run the application.
 ```terminal:execute
 command: |
   cd samples/spring-native-accessing-resources
@@ -51,7 +51,6 @@ command: |
 clear: true
 ```
 
-... build the image and run the application.
 ```terminal:execute
 command: |
   cd samples/spring-native-accessing-resources
@@ -61,13 +60,19 @@ command: |
 clear: true
 ```
 #### Class Initialization
-We can control the initialization with Spring Boot with the `@NativeHint` declaration.
+As the Spring team recommends **limiting class initialization at build time** as much as possible due to side effects like for example static loggers and their configuration getting also initialized, there is on purpose **no way to provide those hints** in a programmatic or declarative way available **in Spring**. Providing hints for the code that will be executed on class initialization should fulfill the need for initialization at build time in most cases.
+
+For those few cases where that's not the case like in our example, we can provide native image build configuration in `META-INF/native-image` (sub-)directories and use it **to construct native-image command-line options**.
+
+To avoid a situation when constituent parts of a project are built with overlapping configurations, we recommended you use subdirectories within META-INF/native-image.
+
+Let's have a look at the native image build configuration for our example.
 ```editor:open-file
-file: samples/spring-native-class-initialization/src/main/java/com/example/springnativeclassinitialization/ClassInit.java
+file: samples/spring-native-class-initialization/src/main/resources/META-INF/native-image/custom/native-image.properties
 line: 1
 ```
 
-You can run the Spring AOT plugin and observe that correct configurations have been generated ...
+If we run the AOT compilation, we can have a look at the generated native image build configuration adding some defaults. As already mentioned, you should ensure that you don't override them by mistake by not adding your custom configuration to the `META-INF/native-image/<package>/<artifact>/native-image.properties` directory. 
 ```terminal:execute
 command: |
   cd samples/spring-native-class-initialization
@@ -77,7 +82,7 @@ command: |
 clear: true
 ```
 
-... build the image and run the application.
+Now it's time that our application works like expected.
 ```terminal:execute
 command: |
   cd samples/spring-native-class-initialization
