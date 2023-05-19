@@ -186,3 +186,38 @@ line: 1
 file: samples/graalvm/Serialization.java
 line: 1
 ```
+
+```section:begin
+name: solutions
+title: Solutions
+```
+
+```section:begin
+name: dynamicproxy
+prefix: DynamicProxy
+title: 1
+```
+```
+java -agentlib:native-image-agent=config-output-dir=META-INF/native-image DynamicProxy java.util.Map
+$GRAALVM_HOME/bin/native-image --no-fallback DynamicProxy
+```
+```section:end
+name: dynamicproxy
+```
+
+```section:begin
+name: serialization
+prefix: Serialization
+title: 2
+```
+```
+java -agentlib:native-image-agent=config-output-dir=META-INF/native-image Serialization
+$GRAALVM_HOME/bin/native-image --no-fallback Serialization
+```
+```section:end
+name: serialization
+```
+
+```section:end
+name: solutions
+```
