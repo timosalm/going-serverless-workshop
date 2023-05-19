@@ -95,3 +95,5 @@ clear: true
 #### Dynamic Proxy and Serialization
 Hints for the Dynamic Proxy and Serialization features can be provided in the same way via `hints.proxies().registerJdkProxy(MyInterface.class)` and `hints.serialization().registerType(MySerializableClass.class)`.
 
+#### Hints for third-party dependencies
+GraalVM native images are an evolving technology and **not all libraries provide support**. The GraalVM community is helping by providing [reachability metadata](https://github.com/oracle/graalvm-reachability-metadata) for projects that don’t yet ship their own. **Spring** itself doesn’t contain hints for 3rd party libraries and instead **relies on the reachability metadata project**.

@@ -53,7 +53,7 @@ clear: true
 ```
 After the container is built, let's deploy our application with Knative and send a request as soon as it's running.
 ```terminal:execute
-command: kn service create spring-boot-hello-world-native --image {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} --scale-min 1
+command: kn service create spring-boot-hello-world-native --image {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} 
 clear: true
 ```
 ```terminal:execute
