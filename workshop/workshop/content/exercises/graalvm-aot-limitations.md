@@ -198,8 +198,10 @@ prefix: DynamicProxy
 title: 1
 ```
 ```
+cd samples/graalvm/
 java -agentlib:native-image-agent=config-output-dir=META-INF/native-image DynamicProxy java.util.Map
 $GRAALVM_HOME/bin/native-image --no-fallback DynamicProxy
+cd $HOME
 ```
 ```section:end
 name: dynamicproxy
@@ -211,8 +213,10 @@ prefix: Serialization
 title: 2
 ```
 ```
+cd samples/graalvm/
 java -agentlib:native-image-agent=config-output-dir=META-INF/native-image Serialization
 $GRAALVM_HOME/bin/native-image --no-fallback Serialization
+cd $HOME
 ```
 ```section:end
 name: serialization
