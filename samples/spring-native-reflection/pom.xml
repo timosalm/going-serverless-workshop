@@ -41,18 +41,4 @@
       </plugin>
     </plugins>
   </build>
-  <repositories>
-    <repository>
-      <id>local-artifactory</id>
-      <name>local-artifactory</name>
-      <url>https://artifactory.emea.end2end.link/artifactory/all</url>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>local-artifactory-snaps</id>
-      <name>local-artifactory</name>
-      <url>https://artifactory.emea.end2end.link/artifactory/all</url>
-    </pluginRepository>
-  </pluginRepositories>
 </project>
