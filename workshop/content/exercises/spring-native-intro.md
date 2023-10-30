@@ -39,7 +39,7 @@ clear: true
 Let's now see how our Spring Boot sample application **performs as a native image on a Serverless runtime**!
 Due to the required resources to build the container image, **instead of building it locally** via the following command ...
 ```
-./mvnw package spring-boot:build-image -Dspring-boot.build-image.imageName={{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} -Pnative -DskipTests
+./mvnw package spring-boot:build-image -Dspring-boot.build-image.imageName={{ REGISTRY_HOST }}/spring-boot-hello-world-native-{{ session_namespace }} -Pnative -DskipTests
 ```
 ... we'll **delegate it to an external component running in the cluster**, the VMware Tanzu Build Service which is also available as [kpack](https://github.com/pivotal/kpack) as open source software.
 But let's first exit the running application with `ctrl + c`.
@@ -47,13 +47,13 @@ But let's first exit the running application with `ctrl + c`.
 command: |
   cd samples/spring-boot-hello-world
   ./mvnw clean
-  kp image create spring-boot-hello-world-native --tag {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --env BP_JVM_VERSION=17 --env BP_MAVEN_BUILD_ARGUMENTS="-Dmaven.test.skip=true --no-transfer-progress package -Pnative" --env BP_NATIVE_IMAGE_BUILD_ARGUMENTS="--no-fallback" --wait
+  kp image create spring-boot-hello-world-native --tag {{ REGISTRY_HOST }}/spring-boot-hello-world-native-{{ session_namespace }} --local-path . --env BP_NATIVE_IMAGE=true --env BP_JVM_VERSION=17 --env BP_MAVEN_BUILD_ARGUMENTS="-Dmaven.test.skip=true --no-transfer-progress package -Pnative" --env BP_NATIVE_IMAGE_BUILD_ARGUMENTS="--no-fallback" --wait
   cd $HOME
 clear: true
 ```
 After the container is built, let's deploy our application with Knative and send a request as soon as it's running.
 ```terminal:execute
-command: kn service create spring-boot-hello-world-native --image {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }} 
+command: kn service create spring-boot-hello-world-native --image {{ REGISTRY_HOST }}/spring-boot-hello-world-native-{{ session_namespace }} 
 clear: true
 ```
 ```terminal:execute
@@ -84,10 +84,10 @@ clear: true
 
 (Optional) Compare the different layers of both container images with the `dive` tool.
 ```terminal:execute
-command: dive {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-native-{{ session_namespace }}
+command: dive {{ REGISTRY_HOST }}/spring-boot-hello-world-native-{{ session_namespace }}
 clear: true
 ```
 ```terminal:execute
-command: dive {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-{{ session_namespace }}
+command: dive {{ REGISTRY_HOST }}/spring-boot-hello-world-{{ session_namespace }}
 clear: true
 ```

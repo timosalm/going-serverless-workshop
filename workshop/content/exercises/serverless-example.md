@@ -15,7 +15,7 @@ With Spring Boot 2.3 and later you can create a container image using the open-s
 ```terminal:execute
 command: |
   cd samples/spring-boot-hello-world
-  ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName={{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-{{ session_namespace }} -DskipTests
+  ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName={{ REGISTRY_HOST }}/spring-boot-hello-world-{{ session_namespace }} -DskipTests
   cd $HOME
 clear: true
 ```
@@ -28,13 +28,13 @@ clear: true
 
 ... and push it to a remote container registry to make it consumable by our Kubernetes cluster.
 ```terminal:execute
-command: docker push {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-{{ session_namespace }}
+command: docker push {{ REGISTRY_HOST }}/spring-boot-hello-world-{{ session_namespace }}
 clear: false
 ```
 
 Let's now deploy our application with Knative.
 ```terminal:execute
-command: kn service create spring-boot-hello-world --image {{ ENV_CONTAINER_REGISTRY_HOSTNAME }}/{{ ENV_CONTAINER_REGISTRY_REPOSITORY }}/spring-boot-hello-world-{{ session_namespace }}
+command: kn service create spring-boot-hello-world --image {{ REGISTRY_HOST }}/spring-boot-hello-world-{{ session_namespace }}
 clear: true
 ```
 
