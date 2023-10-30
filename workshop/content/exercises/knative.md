@@ -4,9 +4,10 @@ For the following demos, we'll use **Knative** as a Serverless runtime.
 
 Knative is an open-source community project which adds components for **deploying, running, and managing applications on any Kubernetes in a Serverless way**.
 Unlike earlier serverless frameworks, Knative is **designed to deploy any modern app workload from monolithic applications to microservices and functions**.
-It consists of two primary components:
+It consists of three subprojects:
 - **Serving**: Which provides middleware components that **enable rapid deployment, upgrading, routing, and automatic scaling of containers**.
 - An **Eventing** system for **consuming and producing events** can be triggered by a variety of sources, such as events from your own apps or cloud services.
+- **Functions**: Enables developers to easily create, build, and deploy stateless, event-driven functions
 
 **Knative Serving** defines four objects that are used to define and control how a serverless workload behaves on the cluster: *Service*, *Configuration*, *Revision*, and *Route*.
 
