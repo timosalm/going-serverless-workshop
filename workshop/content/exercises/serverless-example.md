@@ -14,9 +14,7 @@ The biggest benefits of CNBs are **increased security, minimized risk, and incre
 With Spring Boot 2.3 and later you can create a container image using the open-source [Paketo buildpacks](https://paketo.io) with the following commands for Maven.
 ```terminal:execute
 command: |
-  cd samples/spring-boot-hello-world
-  ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$REGISTRY_HOST/spring-boot-hello-world -DskipTests
-  cd $HOME
+  (cd samples/spring-boot-hello-world && ./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$REGISTRY_HOST/spring-boot-hello-world -DskipTests)
 clear: true
 ```
 
@@ -55,7 +53,7 @@ Now it's time to check out the auto-scaling capabilities of Knative by executing
 watch kubectl get pods
 ```
 ```terminal:execute
-command: hey -z 60s -c 1000 -m GET https://spring-boot-hello-world-{{session_namespace}}.{{ ENV_TAP_INGRESS }}
+command: hey -n 1000 -c 1000 -m GET https://spring-boot-hello-world-{{session_namespace}}.{{ ENV_TAP_INGRESS }}
 clear: true
 ```
 Exit both commands with `ctrl + c` and take a closer look at some other performance metrics of the `user-container`. Remember the CPU and memory consumption for later reference.

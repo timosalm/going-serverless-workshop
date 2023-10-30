@@ -1,3 +1,8 @@
+```terminal:interrupt
+autostart: true
+hidden: true
+cascade: true
+```
 Let’s now build our first native image.
 
 The **native image builder** or `native-image` is a utility that **processes all classes of an application and their dependencies**, including those from the JDK. It **statically analyzes** these data to determine **which classes and methods are reachable during the application execution**. Then it **ahead-of-time compiles** that reachable code and data **to a native executable for a specific operating system and architecture**. This entire process is called building an image (or the image build time) to clearly distinguish it from the compilation of Java source code to bytecode.
