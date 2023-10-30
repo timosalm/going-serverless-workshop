@@ -76,7 +76,7 @@ clear: true
 watch kubectl get pods
 ```
 ```terminal:execute
-command: hey -z 60s -c 1000 -m GET https://spring-boot-hello-world-native-{{session_namespace}}.{{ ENV_TAP_INGRESS }}
+command: hey -n 1000 -c 1000 -m GET https://spring-boot-hello-world-native-{{session_namespace}}.{{ ENV_TAP_INGRESS }}
 clear: true
 ```
 
