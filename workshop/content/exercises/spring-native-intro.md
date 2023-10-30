@@ -1,3 +1,7 @@
+```terminal:interrupt
+autostart: true
+hidden: true
+```
 **Spring Boot 3 added support for compiling Spring applications to lightweight native images using the GraalVM native-image compiler.**
 
 Spring Boot applications are typically dynamic and configuration is performed at runtime, but when creating native images with GraalVM, **a closed-world approach is used to retain static analysis benefits**. This means implies the following restrictions:

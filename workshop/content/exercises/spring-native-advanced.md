@@ -1,3 +1,7 @@
+```terminal:interrupt
+autostart: true
+hidden: true
+```
 We'll now see how we can provide the configuration to the native-image tool that is needed for the undetected usages of dynamic language features with Spring Boot.
 
 The `RuntimeHints API` collects the need for reflection, resource loading, serialization, and JDK proxies at runtime. 

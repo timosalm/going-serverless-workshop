@@ -1,7 +1,6 @@
 ```terminal:interrupt
 autostart: true
 hidden: true
-cascade: true
 ```
 Let’s now build our first native image.
 

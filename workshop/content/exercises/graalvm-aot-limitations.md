@@ -1,3 +1,7 @@
+```terminal:interrupt
+autostart: true
+hidden: true
+```
 For GraalVM native images, all the bytecode in the application needs to be **observed** and **analyzed** at **build time**.
 
 One area the analysis process is responsible for is to determine which classes, methods and fields need to be included in the executable. The **analysis is static**, so it might need some configuration to correctly include the parts of the program that use dynamic features of the language.
