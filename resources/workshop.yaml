@@ -12,7 +12,7 @@ spec:
   vendor: tanzu.vmware.com
   difficulty: beginner
   duration: 90m
-  url: https://github.com/tsalm-vmware/going-serverless-workshop
+  url: https://github.com/timosalm/going-serverless-workshop
   content:
     image: #@ "{}/tap-workshop/going-serverless-workshop:latest".format(data.values.container_registry.hostname)
     files: #@ "github.com/{}/going-serverless-workshop/workshop?ref={}".format(data.values.workshop_git.username,data.values.workshop_git.branch)
@@ -66,14 +66,4 @@ spec:
         subjects:
           - kind: ServiceAccount
             namespace: $(workshop_namespace)
-            name: $(service_account)
-      # Resources      
-      - apiVersion: v1
-        kind: Secret
-        metadata:
-          name: registry-credentials
-        type: kubernetes.io/dockerconfigjson
-        data:
-          #@ docker_creds = {"username": data.values.container_registry.username, "password": data.values.container_registry.password}
-          .dockerconfigjson: #@ base64.encode(json.encode({"auths": {data.values.container_registry.hostname: docker_creds}}))
-        
+            name: $(service_account)  

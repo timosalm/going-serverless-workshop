@@ -1,7 +1,15 @@
-FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:c184e9399d2385807833be0a9f1718c40caa142b6e1c3ddf64fa969716dcd4e3
+FROM ghcr.io/vmware-tanzu-labs/educates-base-environment:2.6.16
 
 # All the direct Downloads need to run as root as they are going to /usr/local/bin
 USER root
+
+RUN code-server --install-extension redhat.java@1.24.2023101204
+RUN code-server --install-extension redhat.vscode-yaml@1.14.0
+RUN code-server --install-extension vscjava.vscode-java-debug@0.54.0
+RUN code-server --install-extension vscjava.vscode-maven@0.42.0
+RUN code-server --install-extension vscjava.vscode-java-dependency@0.23.1
+RUN code-server --install-extension vscjava.vscode-java-test@0.39.1
+RUN code-server --install-extension vmware.vscode-spring-boot@1.49.0
 
 RUN apt-get update && apt-get install -y maven moreutils unzip zip build-essential libz-dev
 
