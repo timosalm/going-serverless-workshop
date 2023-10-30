@@ -11,7 +11,7 @@ RUN code-server --install-extension vscjava.vscode-java-dependency@0.23.1
 RUN code-server --install-extension vscjava.vscode-java-test@0.39.1
 RUN code-server --install-extension vmware.vscode-spring-boot@1.49.0
  
-RUN yum install moreutils maven moreutils unzip zip build-essential libz-dev -y
+RUN yum install moreutils maven moreutils unzip zip gcc gcc-c++ make zlib-devel -y
 
 RUN curl -s "https://get.sdkman.io" | bash && \
     echo "sdkman_auto_answer=true" > $HOME/.sdkman/etc/config && \
