@@ -2,4 +2,4 @@
 set -x
 set +e
 
-docker pull docker.io/paketobuildpacks/builder:base
+kubectl patch serviceaccount default -p '{"secrets": [{"name": "educates-registry-credentials"}],"imagePullSecrets": [{"name": "educates-registry-credentials"}]}'
