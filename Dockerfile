@@ -10,8 +10,8 @@ RUN code-server --install-extension vscjava.vscode-maven@0.42.0
 RUN code-server --install-extension vscjava.vscode-java-dependency@0.23.1
 RUN code-server --install-extension vscjava.vscode-java-test@0.39.1
 RUN code-server --install-extension vmware.vscode-spring-boot@1.49.0
-
-RUN apt-get update && apt-get install -y maven moreutils unzip zip build-essential libz-dev
+ 
+RUN yum install moreutils maven moreutils unzip zip build-essential libz-dev -y
 
 RUN curl -s "https://get.sdkman.io" | bash && \
     echo "sdkman_auto_answer=true" > $HOME/.sdkman/etc/config && \
@@ -21,11 +21,11 @@ RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk install java 22.3.1.
 RUN echo "export GRAALVM_HOME=/home/eduk8s/.sdkman/candidates/java/22.3.1.r17-grl/" >> $HOME/.bashrc
 
 # TBS
-RUN curl -L -o /usr/local/bin/kp https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.10.0/kp-linux-amd64-0.10.0 && \
+RUN curl -L -o /usr/local/bin/kp https://github.com/buildpacks-community/kpack-cli/releases/download/v0.12.0/kp-linux-amd64-0.12.0 && \
   chmod 755 /usr/local/bin/kp
 
 # Knative
-RUN curl -L -o /usr/local/bin/kn https://github.com/knative/client/releases/download/knative-v1.10.0/kn-linux-amd64 && \
+RUN curl -L -o /usr/local/bin/kn https://github.com/knative/client/releases/download/knative-v1.12.0/kn-linux-amd64 && \
     chmod 755 /usr/local/bin/kn
 
 # hey 
