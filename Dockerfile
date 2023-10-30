@@ -1,7 +1,7 @@
 FROM ghcr.io/vmware-tanzu-labs/educates-base-environment:2.6.16
 
 # All the direct Downloads need to run as root as they are going to /usr/local/bin
-USER root
+USER root 
 
 RUN code-server --install-extension redhat.java@1.24.2023101204
 RUN code-server --install-extension redhat.vscode-yaml@1.14.0
@@ -37,6 +37,7 @@ RUN curl -LO https://github.com/wagoodman/dive/releases/download/v0.10.0/dive_0.
     && tar xvzf dive_0.10.0_linux_amd64.tar.gz -C /usr/local/bin dive \
     && chmod 755 /usr/local/bin/dive && rm dive_0.10.0_linux_amd64.tar.gz
 
-USER 1001
-
 RUN fix-permissions /home/eduk8s
+RUN fix-permissions /opt
+
+USER 1001
